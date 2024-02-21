@@ -15,6 +15,19 @@ const jobSchema = new mongoose.Schema(
     },
     location: String,
     requirements: [String],
+    applicants: [
+      {
+        name: String,
+        email: String,
+        graduationYear: Number,
+        college: String,
+        stream: String,
+        resume: {
+          data: Buffer,
+          contentType: String,
+        },
+      },
+    ],
   },
   { timestamps: true }
 );

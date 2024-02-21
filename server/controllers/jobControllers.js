@@ -35,6 +35,17 @@ exports.applyToJob = async (req, res) => {
       return res.status(404).json({ message: "Job not found" });
     }
 
+    job.applicants.push({
+      name: req.user.name,
+      email,
+      graduationYear,
+      college,
+      stream,
+      resume,
+    });
+
+    await job.save();
+
     const user = await User.findById(req.user._id);
     console.log(user);
     user.jobsApplied.push(jobId);
