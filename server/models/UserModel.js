@@ -14,14 +14,17 @@ const userSchema = new mongoose.Schema(
     yearsOfExperience: Number,
     organization: String,
     role: String,
-    jobsapplied: [
+    jobsApplied: [
       {
-        type: mongoose.Schema.Types.ObjectId,
+        job: Number,
+        // ref: "Job",
+        appliedDate: { type: Date, default: Date.now },
       },
     ],
     socialmedia: [
       {
-        type: mongoose.Schema.Types.ObjectId,
+        platform: String,
+        link: String,
       },
     ],
   },

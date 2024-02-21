@@ -26,6 +26,8 @@ const signup = async (req, res) => {
     currentIndustry,
     yearsOfExperience,
     organization,
+    jobsapplied,
+    socialmedia,
   } = req.body;
 
   try {
@@ -47,6 +49,8 @@ const signup = async (req, res) => {
       currentIndustry,
       yearsOfExperience,
       organization,
+      jobsapplied,
+      socialmedia,
     });
 
     const salt = await bcrypt.genSalt(10);
@@ -86,7 +90,7 @@ const login = async (req, res) => {
 
     const token = generateToken(user._id);
 
-    res.status(200).json({ token, user });
+    res.status(200).json({ token });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error", err);
