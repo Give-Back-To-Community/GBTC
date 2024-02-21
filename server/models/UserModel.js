@@ -14,6 +14,8 @@ const userSchema = new mongoose.Schema(
     yearsOfExperience: Number,
     organization: String,
     role: String,
+    jobsapplied: [],
+    socialmedia: [],
   },
   { timestamps: true }
 );
