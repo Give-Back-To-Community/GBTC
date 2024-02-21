@@ -56,7 +56,7 @@ const signup = async (req, res) => {
 
     const token = generateToken(user._id);
 
-    res.status(200).json({ token, user });
+    res.status(200).json({ token });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
