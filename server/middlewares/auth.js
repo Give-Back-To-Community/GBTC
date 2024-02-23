@@ -1,25 +1,37 @@
+// middlewares/auth.js
 const jwt = require("jsonwebtoken");
+const User = require("../models/UserModel");
 
 const auth = async (req, res, next) => {
-  let token = req.headers.authorization;
-  token = token.split(" ")[1];
+  // Get token from the Authorization header
+  const authHeader = req.headers["authorization"];
+  if (!authHeader) {
+    return res.status(401).json({ message: "Authorization header missing" });
+  }
 
+  const token = authHeader.split(" ")[1];
   if (!token) {
-    res.status(401).json({
-      message: "Unauthorized User No token found",
-    });
-  } else {
-    const isTokenVerified = jwt.verify(token, process.env.JWT_SECRET);
+    return res.status(401).json({ message: "Bearer token missing" });
+  }
 
-    if (!isTokenVerified) {
-      res.status(401).json({
-        message:
-          "Token is not verified , Some unauthorized user trying to access the system",
-      });
-    } else {
-      req.userId = isTokenVerified.userId;
-      next();
+  try {
+    // Verify token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log(decoded);
+
+    const user = await User.findById(decoded.userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
     }
+
+    // Set user object to req.user
+    req.user = user;
+    console.log(req.user); // Now req.user should contain the user object
+    next();
+  } catch (error) {
+    console.error(error);
+    return res.status(401).json({ message: "Invalid token" });
   }
 };
+
 module.exports = auth;

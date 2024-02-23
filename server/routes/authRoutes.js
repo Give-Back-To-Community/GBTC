@@ -1,40 +1,41 @@
 // routes/authRoutes.js
 const express = require("express");
 const router = express.Router();
-const { check } = require("express-validator");
+const { validationResult } = require("express-validator");
 const { signup, login } = require("../controllers/authController");
+const signupValidationMiddleware = require("../middlewares/signupValidationMiddleware");
+const loginValidationMiddleware = require("../middlewares/loginValidationMiddleware");
 
 // Signup route
 router.post(
   "/signup",
-  [
-    check("name", "Name is required").not().isEmpty(),
-    check("age", "Age is required").not().isEmpty(),
-    check("email", "Please include a valid email").isEmail(),
-    check("username", "Username is required").not().isEmpty(),
-    check(
-      "password",
-      "Please enter a password with 6 or more characters"
-    ).isLength({ min: 6 }),
-    check("college", "College is required").not().isEmpty(),
-    check("graduationYear", "Graduation year is required").not().isEmpty(),
-    check("isStudent", "Is student is required").not().isEmpty(),
-  ],
+  signupValidationMiddleware,
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    next();
+  },
   signup
 );
 
 // Login route
 router.post(
   "/login",
-  [
-    check("email", "Please include a valid email").isEmail(),
-    check("password", "Password is required").exists(),
-  ],
+  loginValidationMiddleware,
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    next();
+  },
   login
 );
 
 router.get("/", (req, res) => {
-  res.send("sucess");
+  res.send("success");
 });
 
 module.exports = router;
