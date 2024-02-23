@@ -21,6 +21,9 @@ app.use("/api/blog", blogRoutes);
 const commentRoutes = require("./routes/commentRoutes");
 app.use("/api/comment", commentRoutes);
 
+const likeRoutes = require("./routes/likeRoutes");
+app.use("/api/blog/like", likeRoutes);
+
 // Error handling middleware
 app.use(errorHandler);
 
