@@ -16,8 +16,10 @@ const userSchema = new mongoose.Schema(
     role: String,
     jobsApplied: [
       {
-        job: Number,
-        // ref: "Job",
+        job: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Job", // This is where you specify the referenced model
+        },
         appliedDate: { type: Date, default: Date.now },
       },
     ],
@@ -25,6 +27,18 @@ const userSchema = new mongoose.Schema(
       {
         platform: String,
         link: String,
+      },
+    ],
+    followers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    following: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
       },
     ],
   },
