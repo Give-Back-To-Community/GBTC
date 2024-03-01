@@ -27,6 +27,11 @@ app.use("/api/blog/like", likeRoutes);
 const jobRoutes = require("./routes/jobRoutes");
 app.use("/api/job", jobRoutes);
 
+const followRoutes = require("./routes/followRoutes");
+app.use("/api/follow", followRoutes);
+
+const showFollowRoutes = require("./routes/showFollowRoutes");
+app.use("/api/showFollow", showFollowRoutes);
 // Error handling middleware
 app.use(errorHandler);
 
