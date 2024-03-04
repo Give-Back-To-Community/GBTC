@@ -4,7 +4,6 @@ const User = require("../models/UserModel");
 exports.postJob = async (req, res) => {
   try {
     console.log(req.body);
-    // Check if req.user exists and has isStudent property
     if (req.user && !req.user.isStudent) {
       const job = new Job({
         company: req.body.company,

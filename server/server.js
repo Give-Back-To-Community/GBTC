@@ -35,6 +35,9 @@ app.use("/api/showFollow", showFollowRoutes);
 // Error handling middleware
 app.use(errorHandler);
 
+const doubtRouter = require("./routes/doubts");
+app.use("/doubts", doubtRouter);
+
 // Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
