@@ -35,7 +35,7 @@ app.use("/api/showFollow", showFollowRoutes);
 // Error handling middleware
 app.use(errorHandler);
 
-const doubtRouter = require("./routes/doubts");
+const doubtRouter = require("./routes/doubtRoutes");
 app.use("/doubts", doubtRouter);
 
 // Server

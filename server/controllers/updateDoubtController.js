@@ -1,6 +1,6 @@
 // controllers/updateDoubtController.js
 
-const Doubt = require("../models/Doubt");
+const Doubt = require("../models/DoubtsModel");
 
 module.exports = async (req, res) => {
   try {
