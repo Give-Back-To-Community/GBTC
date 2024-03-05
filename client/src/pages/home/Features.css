@@ -1,0 +1,20 @@
+.features-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Creates 3 columns */
+  grid-template-rows: repeat(2, 1fr); /* Creates 2 rows */
+  gap: 20px; /* Spacing between cards */
+  max-width: 1200px; /* Adjust the max-width as necessary */
+  margin: auto; /* Center the grid */
+  padding: 20px; /* Padding around the grid */
+}
+
+.features-header {
+  text-align: center; /* Center the heading */
+  margin-bottom: 40px; /* Spacing between heading and cards */
+}
+
+@media screen and (max-width: 768px) {
+  .features-container {
+    flex-direction: column;
+  }
+}

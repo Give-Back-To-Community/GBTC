@@ -1,0 +1,76 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Example font */
+  line-height: 1.6;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Centered content */
+  align-items: center;
+  padding: 40px 70px; /* Responsive padding */
+  gap: 50px; /* Space between text and image */
+  color: #333; /* Dark text color for readability */
+  background: #f4f4f4; /* Light background */
+}
+
+/* Typography styles */
+h1 {
+  font-size: 2.5rem; /* Large text for heading */
+  margin-bottom: 0.5rem;
+  color: #0d6efd; /* Theme color for your brand */
+}
+
+h1 span {
+  font-weight: normal; /* Less emphasis for subtitle */
+  color: #666; /* Subtle color change */
+}
+
+p {
+  font-size: 1rem; /* Readable paragraph size */
+  margin-top: 1rem;
+}
+
+/* Styles for the hero image */
+.hero-sec-img {
+  max-width: 100%; /* Responsive image width */
+  height: 500px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column; /* Stack elements on small screens */
+    text-align: center; /* Center text on small screens */
+  }
+
+  .hero-sec-img {
+    margin-top: 20px; /* Space between text and image on small screens
+     */
+    height: 100%;
+  }
+
+  h1 {
+    font-size: 2rem; /* Slightly smaller heading on small screens */
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animated elements */
+.hero-container span,
+.hero-sec-img {
+  animation: fadeInUp 1s ease-out;
+}
