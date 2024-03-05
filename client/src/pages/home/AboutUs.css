@@ -1,0 +1,47 @@
+.about-us-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+  background-color: #f9f9f9; /* Light background for the section */
+}
+
+.about-us-content {
+  max-width: 600px; /* Set a max-width for the content */
+}
+
+.about-us-content h2 {
+  font-size: 2.5rem;
+  color: #333; /* Dark color for the heading */
+  margin-bottom: 20px;
+}
+
+.about-us-content p {
+  font-size: 1rem;
+  color: #666; /* Grey color for the paragraph */
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.about-us-image {
+  margin-left: 50px;
+  mix-blend-mode: multiply; /* Add space between the text and image */
+}
+
+.about-us-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px; /* Optional: for rounded corners */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-us-section {
+    flex-direction: column; /* Stack the elements on smaller screens */
+  }
+
+  .about-us-image {
+    margin-left: 0;
+    margin-top: 20px; /* Add space between text and image on smaller screens */
+  }
+}

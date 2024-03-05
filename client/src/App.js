@@ -1,6 +1,7 @@
 import Navbar from "./components/navbar/Navbar";
 import Features from "./pages/home/Features";
 import Home from "./pages/home/Home";
+import AboutUs from "./pages/home/AboutUs";
 // import ImageSlider from "./pages/home/ImageSlider";
 // import Community from "./pages/home/Community";
 export default function App() {
@@ -11,6 +12,7 @@ export default function App() {
       {/* <ImageSlider /> */}
       <Features />
       {/* <Community /> */}
+      <AboutUs />
     </div>
   );
 }

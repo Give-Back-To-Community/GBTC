@@ -1,33 +1,10 @@
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-container {
+  display: block;
+  background-color: #fff;
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
+  position: absolute;
   width: 100%;
-  max-width: 1450px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.gbtc-logo {
-  height: 60px;
-  width: 60px;
-  position: relative;
-}
-
-.navbar-search input[type="search"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
+  z-index: 3;
 }
 
 .navbar-login {
@@ -37,21 +14,136 @@
   padding: 10px 25px;
   border-radius: 4px;
   cursor: pointer;
+  align-items: center;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 20px;
 }
 
-@media (max-width: 768px) {
-  .gbtc-logo {
-    width: 60px;
-  }
+.navbar ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  background-color: #fff;
+}
 
-  .navbar-container {
-    padding: 0 10px;
-  }
-  .navbar-search {
-    margin: 0 10px;
-  }
+.navbar li a {
+  display: block;
+  padding: 20px 20px;
+  border-right: 1px solid #f4f4f4;
+  text-decoration: none;
+}
 
-  .navbar-login {
-    padding: 10px 15px;
+.navbar li a:hover,
+.navbar .menu-btn:hover {
+  background-color: #f4f4f4;
+}
+
+.navbar .logo {
+  display: block;
+  float: left;
+  font-size: 2em;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+.navbar .menu {
+  clear: both;
+  max-height: 0;
+  transition: max-height 0.2s ease-out;
+}
+
+/* menu icon */
+
+.gbtc-logo {
+  width: 65px;
+  height: 65px;
+  /* margin-top: 10px; */
+  margin-left: 10px;
+}
+.navbar .menu-icon {
+  cursor: pointer;
+  display: inline-block;
+  padding: 28px 20px;
+  position: relative;
+  user-select: none;
+  float: right;
+}
+
+.navbar .menu-icon .navicon {
+  background: #333;
+  display: block;
+  height: 2px;
+  position: relative;
+  transition: background 0.2s ease-out;
+  width: 18px;
+}
+
+.navbar .menu-icon .navicon:before,
+.navbar .menu-icon .navicon:after {
+  background: #333;
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all 0.2s ease-out;
+  width: 100%;
+}
+
+.navbar .menu-icon .navicon:before {
+  top: 5px;
+}
+
+.navbar .menu-icon .navicon:after {
+  top: -5px;
+}
+
+/* menu btn */
+
+.navbar .menu-btn {
+  display: none;
+}
+
+.navbar .menu-btn:checked ~ .menu {
+  max-height: 240px;
+}
+
+.navbar .menu-btn:checked ~ .menu-icon .navicon {
+  background: transparent;
+}
+
+.navbar .menu-btn:checked ~ .menu-icon .navicon:before {
+  transform: rotate(-45deg);
+}
+
+.navbar .menu-btn:checked ~ .menu-icon .navicon:after {
+  transform: rotate(45deg);
+}
+
+.navbar .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+.navbar .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+  top: 0;
+}
+
+/* 48em = 768px */
+
+@media (min-width: 48em) {
+  .navbar {
+    display: block;
+  }
+  .navbar li {
+    float: left;
+  }
+  .navbar li a {
+    padding: 20px 30px;
+  }
+  .navbar .menu {
+    clear: none;
+    float: right;
+    max-height: none;
+  }
+  .navbar .menu-icon {
+    display: none;
   }
 }
