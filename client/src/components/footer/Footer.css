@@ -1,0 +1,61 @@
+.site-footer {
+  background-color: #007bff; /* Adjust the color to fit your branding */
+  color: white;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  margin: 20px;
+}
+
+.footer-section h4 {
+  margin-bottom: 20px;
+}
+
+.footer-section ul,
+.footer-section p,
+.footer-section .social-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li a,
+.footer-section .social-links a {
+  color: white;
+  text-decoration: none;
+  margin-bottom: 10px;
+  display: block;
+  transition: color 0.3s;
+}
+
+.footer-section ul li a:hover,
+.footer-section .social-links a:hover {
+  color: #d1ecff;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    justify-content: center;
+  }
+
+  .footer-section {
+    margin: 10px;
+    text-align: center;
+  }
+}

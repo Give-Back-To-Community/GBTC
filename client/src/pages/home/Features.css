@@ -1,3 +1,6 @@
+.features {
+  background-color: black;
+}
 .features-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Creates 3 columns */
