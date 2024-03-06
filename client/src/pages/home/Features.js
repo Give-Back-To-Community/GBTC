@@ -4,7 +4,7 @@ import "./Features.css";
 
 const Features = () => {
   return (
-    <div>
+    <div className="features">
       <div className="features-header">
         <h1>Our Features</h1>
         <p>Explore the wide range of features our platform offers.</p>

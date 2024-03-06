@@ -1,18 +1,30 @@
 import React from "react";
 import "./Navbar.css";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
-    <nav className="navbar">
-      <div className="navbar-container">
-        <a href="/" className="navbar-logo">
-          <img src="GBTC-logo.png" alt="Logo" className="gbtc-logo" />
-        </a>
-        <div className="navbar-search">
-          <input type="search" placeholder="Search..." />
-        </div>
+    <header class="navbar">
+      <img src="gbtc-logo.png" alt="logo" className="gbtc-logo" />
+      <input class="menu-btn" type="checkbox" id="menu-btn" />
+      <label class="menu-icon" for="menu-btn">
+        <span class="navicon"></span>
+      </label>
+      <ul class="menu">
+        <li>
+          <Link to="/feed">
+            <div>Feed</div>
+          </Link>
+        </li>
+        <li>
+          <a href="#about">Chat</a>
+        </li>
+        <li>
+          <a href="#careers">LiveStreams</a>
+        </li>
         <button className="navbar-login">Login</button>
-      </div>
-    </nav>
+        <button className="navbar-login">Sign Up</button>
+      </ul>
+    </header>
   );
 };
 

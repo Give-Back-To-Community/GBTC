@@ -17,7 +17,7 @@ const auth = async (req, res, next) => {
   try {
     // Verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log(decoded);
+    // console.log(decoded);
 
     const user = await User.findById(decoded.userId);
     if (!user) {
@@ -26,7 +26,7 @@ const auth = async (req, res, next) => {
 
     // Set user object to req.user
     req.user = user;
-    console.log(req.user); // Now req.user should contain the user object
+    // console.log(req.user); // Now req.user should contain the user object
     next();
   } catch (error) {
     console.error(error);

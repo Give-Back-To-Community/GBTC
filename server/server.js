@@ -32,6 +32,9 @@ app.use("/api/follow", followRoutes);
 
 const showFollowRoutes = require("./routes/showFollowRoutes");
 app.use("/api/showFollow", showFollowRoutes);
+
+const extraRoutes = require("./routes/extraRoutes");
+app.use("/api/extra", extraRoutes);
 // Error handling middleware
 app.use(errorHandler);
 

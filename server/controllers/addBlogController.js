@@ -4,8 +4,8 @@ const User = require("../models/UserModel");
 
 const addBlog = async (req, res) => {
   const { title, description, techStackUsed } = req.body;
-  const _id = req.userId;
-  console.log(_id);
+  const _id = req.user._id;
+  // console.log(_id);
   const user = await User.findOne({ _id });
 
   if (!user) {

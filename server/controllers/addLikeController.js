@@ -4,7 +4,7 @@ const addLikeController = async (req, res) => {
   const { id } = req.body;
 
   const curBlog = await Blog.find({ _id: id });
-
+  // console.log("in like blog", curBlog[0]);
   if (!curBlog) {
     res.status(400).json({
       message: "No blogs found",
@@ -15,7 +15,7 @@ const addLikeController = async (req, res) => {
         _id: id,
       },
       {
-        likes: curBlog.likes + 1,
+        likes: curBlog[0].likes + 1,
       }
     );
 

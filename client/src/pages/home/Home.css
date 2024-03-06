@@ -2,16 +2,24 @@ body,
 html {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Example font */
-  line-height: 1.6;
+  /* line-height: 1.6; */
+}
+
+.content {
+  position: relative;
+  z-index: 1; /* Ensure the content is above the Spline background */
+  /* Your content styles here (e.g., text color, padding) */
 }
 
 .hero-container {
   display: flex;
+  height: auto;
   flex-direction: row;
   justify-content: center; /* Centered content */
   align-items: center;
-  padding: 40px 70px; /* Responsive padding */
+  padding: 70px 70px; /* Responsive padding */
   gap: 50px; /* Space between text and image */
   color: #333; /* Dark text color for readability */
   background: #f4f4f4; /* Light background */

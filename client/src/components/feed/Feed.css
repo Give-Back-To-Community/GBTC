@@ -1,0 +1,150 @@
+#feed_container {
+  gap: 17px;
+  display: flex;
+  padding-top: 1rem;
+  margin-top: 4.4rem;
+  background-color: #f3f4f6;
+  /* height: 50rem; */
+}
+#feed_container_left {
+  height: 33rem;
+  /* position: fixed; */
+  width: 23.5%;
+  background-color: white;
+  overflow-y: scroll;
+
+  /* border: 1px solid; */
+}
+#feed_container_leftTitle {
+  font-size: x-large;
+  margin-left: 6px;
+}
+.feed_container_leftChild {
+  margin-left: 7px;
+  margin-top: 2rem;
+}
+.feed_container_leftBoxChild {
+  width: 95%;
+  margin-left: 6px;
+}
+
+#feed_container_location {
+  margin-top: 1rem;
+}
+#feed_container_company {
+  margin-top: 1rem;
+}
+#feed_container_role {
+  margin-top: 1rem;
+}
+#feed_container_techStack {
+  margin-top: 1rem;
+}
+#feed_container_title {
+  margin-top: 1rem;
+}
+#feed_container_description {
+  margin-top: 1rem;
+}
+.feed_container_leftBoxInputChild {
+  border-radius: 3px;
+  /* font-size: large; */
+  height: 2.2rem;
+  border: 1px solid #999999;
+  width: 92.3%;
+  margin-left: 6px;
+}
+#feed_container_left_filterSearch {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  padding-bottom: 7px;
+}
+#searchButton {
+  border-radius: 5px;
+  padding: 8px;
+  border: 1px solid;
+  width: 7rem;
+}
+#resetButton {
+  border-radius: 5px;
+  padding: 8px;
+  border: 1px solid;
+  width: 7rem;
+  margin-left: 1rem;
+}
+#feed_container_middle {
+  /* margin-left: 25vw; */
+  border: 1px solid;
+  border-radius: 10px;
+  background-color: white;
+  width: 50%;
+  padding-bottom: 1rem;
+}
+#feed_container_middle_createBlogHeading {
+  margin-top: 4px;
+  width: 10rem;
+  cursor: pointer;
+  text-align: center;
+  background-color: #4e6ef2;
+  padding: 9px;
+  color: white;
+  border-radius: 10px;
+  margin-left: 28rem;
+}
+#feed_container_middle_blogDetails {
+  height: 0rem;
+  transition: height 1s;
+  overflow: hidden;
+}
+#feed_container_middle_blogDetails_title {
+  font-size: large;
+  margin-top: 1rem;
+  margin-left: 17px;
+}
+#feed_container_middle_blogDetails_titleInput {
+  width: 83%;
+  height: 29px;
+  margin-left: 17px;
+  margin-top: 4px;
+}
+#feed_container_middle_blogDetails_description {
+  font-size: large;
+  margin-top: 1rem;
+  margin-left: 17px;
+}
+#feed_container_middle_blogDetails_descriptionInput {
+  width: 83%;
+  height: 29px;
+  margin-left: 17px;
+  margin-top: 4px;
+}
+#feed_container_middle_blogDetails_techStackHeading {
+  font-size: large;
+  margin-top: 1rem;
+  margin-left: 17px;
+}
+.feed_container_middle_blogDetailsTechStack {
+  margin-left: 1rem;
+  /* margin-top: 2rem; */
+  width: 84.5%;
+}
+#addBlogButton {
+  width: 10rem;
+  margin-top: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  margin-left: 8rem;
+}
+#resetBlogButton {
+  width: 10rem;
+  padding: 10px;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+#feed_container_right {
+  height: 28rem;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid;
+  width: 23.5%;
+}

@@ -3,7 +3,7 @@ const User = require("../models/UserModel");
 const Comment = require("../models/CommentModel");
 const addCommentController = async (req, res) => {
   const { id, content } = req.body;
-  const userId = req.userId;
+  const userId = req.user._id;
 
   if (!id) {
     res.status(400).json({
@@ -23,7 +23,7 @@ const addCommentController = async (req, res) => {
         message: "No such blog exist",
       });
     }
-    console.log(curBlog);
+    // console.log(curBlog);
 
     await Blog.findOneAndUpdate(
       { _id: id },
@@ -39,7 +39,6 @@ const addCommentController = async (req, res) => {
     res.status(200).json({
       message: "successfully added comment",
       newComment,
-      c,
     });
   }
 };
