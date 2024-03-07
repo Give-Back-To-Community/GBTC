@@ -11,16 +11,12 @@
   --login-cta-hover: #1f0098;
 }
 
-body {
-  /* background: var(--bodybg); */
-}
-
 .container {
   font-family: "Raleway", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 90vh;
   width: 100%;
 }
 .login-container {
@@ -29,14 +25,13 @@ body {
   margin: auto;
   width: 100%;
   min-width: 320px;
-  height: 116vh;
+  height: 90vh;
 }
 
 .logo svg {
   height: 40px;
   width: 40px;
   fill: var(--primary-color);
-  padding-top: 40px;
 }
 
 .login-form {

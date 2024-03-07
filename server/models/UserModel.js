@@ -14,6 +14,7 @@ const userSchema = new mongoose.Schema(
     yearsOfExperience: Number,
     organization: String,
     role: String,
+    profilePictureUrl: String,
     jobsApplied: [
       {
         job: {
@@ -21,12 +22,6 @@ const userSchema = new mongoose.Schema(
           ref: "Job", // This is where you specify the referenced model
         },
         appliedDate: { type: Date, default: Date.now },
-      },
-    ],
-    socialmedia: [
-      {
-        platform: String,
-        link: String,
       },
     ],
     followers: [

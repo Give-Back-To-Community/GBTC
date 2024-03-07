@@ -1,0 +1,83 @@
+.form-container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.check-box-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: auto auto auto auto;
+}
+
+.registration-submit-btn {
+  color: var(--white);
+  text-decoration: none;
+  border: 1px solid var(--primary-color);
+  margin: auto auto auto;
+  background: var(--primary-color);
+  height: 35px;
+  width: 30%;
+}
+
+.register-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.reg-img-sec {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.register-form .form-row {
+  display: contents;
+}
+
+.register-form .form-group label {
+  margin-bottom: 5px;
+}
+
+.register-form .form-group input,
+.register-form .form-group button {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccd0d5;
+  border-radius: 4px;
+}
+
+.register-form button[type="submit"] {
+  grid-column: span 2;
+}
+
+@media (max-width: 768px) {
+  .register-form {
+    grid-template-columns: 1fr;
+  }
+
+  .register-form button[type="submit"] {
+    grid-column: span 1;
+  }
+
+  .reg-img-sec {
+    display: none;
+  }
+}
+
+.register-container h1 {
+  text-align: center;
+}

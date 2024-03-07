@@ -28,6 +28,7 @@ const signup = async (req, res) => {
     organization,
     jobsapplied,
     socialmedia,
+    profilePictureUrl,
   } = req.body;
 
   try {
@@ -51,6 +52,7 @@ const signup = async (req, res) => {
       organization,
       jobsapplied,
       socialmedia,
+      profilePictureUrl,
     });
 
     const salt = await bcrypt.genSalt(10);

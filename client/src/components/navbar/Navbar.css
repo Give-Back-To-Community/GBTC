@@ -6,6 +6,10 @@
   width: 100%;
   z-index: 1000;
 }
+.navbar {
+  position: sticky;
+  top: 0;
+}
 
 .navbar-login {
   background-color: #4e6ef2;
