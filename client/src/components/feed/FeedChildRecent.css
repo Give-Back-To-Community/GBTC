@@ -1,0 +1,10 @@
+#feed_child_recentContainerTitle {
+  font-weight: 500;
+  font-size: large;
+  margin-top: 1rem;
+  margin-left: 8px;
+}
+#feed_child_recentContainerBlogs {
+  margin-top: 1rem;
+  padding: 6px;
+}

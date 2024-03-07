@@ -3,9 +3,16 @@ const Blog = require("../models/BlogModel");
 
 const viewAllBlogsController = (req, res) => {
   BlogRecord.find({})
-    .populate("blogs")
+    .populate("user")
+    .populate({
+      path: "blogs",
+      populate: {
+        path: "comments",
+        model: "Comment",
+      },
+    })
     .then((populatedQuery) => {
-      console.log(populatedQuery);
+      // console.log(populatedQuery);
       res.status(200).json({
         blogs: populatedQuery,
       });

@@ -2,7 +2,7 @@ const BlogRecord = require("../models/BlogRecordModel");
 const Blog = require("../models/BlogModel");
 
 const viewMyBlogsController = (req, res) => {
-  const userId = req.userId;
+  const userId = req.user._id;
   BlogRecord.findOne({
     user: userId,
   })

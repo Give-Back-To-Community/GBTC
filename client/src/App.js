@@ -1,20 +1,20 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Landing from "./pages/home/Landing";
 import Navbar from "./components/navbar/Navbar";
-import Features from "./pages/home/Features";
-import Home from "./pages/home/Home";
-import AboutUs from "./pages/home/AboutUs";
-import Footer from "./components/footer/Footer";
+import Feed from "./components/feed/Feed";
+import "./App.css";
 // import ImageSlider from "./pages/home/ImageSlider";
 // import Community from "./pages/home/Community";
 export default function App() {
   return (
     <div className="App">
-      <Navbar />
-      <Home />
-      {/* <ImageSlider /> */}
-      <Features />
-      {/* <Community /> */}
-      <AboutUs />
-      <Footer />
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/feed" element={<Feed />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

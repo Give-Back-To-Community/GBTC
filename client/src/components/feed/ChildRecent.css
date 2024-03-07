@@ -1,0 +1,13 @@
+#child_feed_recent {
+  padding-bottom: 18px;
+  border-bottom: 1px solid #f3f4f6;
+  cursor: pointer;
+}
+#child_feed_recent:hover {
+  background-color: #f3f4f6;
+  text-decoration: underline;
+}
+#child_feed_recent_title {
+  font-weight: 500;
+  font-family: sans-serif;
+}
