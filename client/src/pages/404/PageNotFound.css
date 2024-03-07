@@ -1,0 +1,28 @@
+.pageNotFound-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  width: 100%;
+  background-color: #f5f5f5;
+}
+
+.error {
+  font-size: 60px;
+  color: #32955b;
+}
+
+.pageNotFound-left-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+}
+
+.not-found-image {
+  width: 600px;
+  height: 600px;
+}

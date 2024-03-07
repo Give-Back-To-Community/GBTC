@@ -5,6 +5,7 @@ import Feed from "./components/feed/Feed";
 import "./App.css";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
+import PageNotFound from "./pages/404/PageNotFound";
 // import ImageSlider from "./pages/home/ImageSlider";
 // import Community from "./pages/home/Community";
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="/feed" element={<Feed />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </div>
