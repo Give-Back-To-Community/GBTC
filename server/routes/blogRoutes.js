@@ -7,7 +7,7 @@ const viewAllBlogsController = require("../controllers/viewAllBlogsController");
 const viewMyBlogsController = require("../controllers/viewMyBlogsController");
 
 router.get("/viewBlog/myBlogs", auth, viewMyBlogsController);
-router.get("/viewBlog/allBlogs", auth, viewAllBlogsController);
+router.get("/viewBlog/allBlogs", viewAllBlogsController);
 
 router.post("/addBlog", auth, addBlogController);
 

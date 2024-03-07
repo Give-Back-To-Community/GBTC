@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500&display=swap");
 
 :root {
-  --bodybg: #dcdefe;
+  /* --bodybg: #dcdefe; */
   --primary-color: #5138ee;
   --grey: #d6d6d6;
   --placeholder: #969696;
@@ -12,7 +12,7 @@
 }
 
 body {
-  background: var(--bodybg);
+  /* background: var(--bodybg); */
 }
 
 .container {
@@ -29,7 +29,7 @@ body {
   margin: auto;
   width: 100%;
   min-width: 320px;
-  height: 100vh;
+  height: 116vh;
 }
 
 .logo svg {
@@ -339,6 +339,10 @@ body {
   margin-top: 10px;
 }
 
+.register-div {
+  margin-left: 3rem;
+  margin-top: -2vh;
+}
 @media screen and (min-width: 768px) {
   .login-container .onboarding {
     display: flex;

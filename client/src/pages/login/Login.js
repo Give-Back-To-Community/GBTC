@@ -1,7 +1,62 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Login.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const emailInput = useRef(null);
+  const passwordInput = useRef(null);
+
+  const loginButton = useRef(null);
+
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    if (loginButton.current && emailInput.current && passwordInput.current) {
+      loginButton.current.onclick = () => {
+        // if (passwordInput.current.value.length < 8) {
+        //   alert("Minimum length for password is 8");
+        //   return;
+        // }
+        const jsonData = {
+          email: emailInput.current.value,
+          password: passwordInput.current.value,
+        };
+        setLoading(true);
+        console.log(jsonData);
+        fetch("http://localhost:5000/api/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(jsonData),
+        })
+          .then((res) => {
+            if (!res.ok) {
+              return res.json().then((data) => {
+                throw new Error(
+                  `HTTP error! Status: ${res.status}, Message: ${data.message}`
+                );
+              });
+            }
+            return res.json();
+          })
+          .then((response) => {
+            setLoading(false);
+            localStorage.setItem("token", response.token);
+            localStorage.setItem("name", response.name);
+            console.log("name", localStorage.getItem("name"));
+
+            alert("login successfully");
+            navigate("/");
+            window.location.reload();
+          })
+          .catch((err) => {
+            console.log("Some error occurred while login ", err.message);
+            alert(err.message);
+          });
+      };
+    }
+  }, []);
   return (
     <div className="log-container">
       <div className="login-container">
@@ -23,14 +78,19 @@ const Login = () => {
             </p>
 
             <div className="sign-in-seperator">
-              <span>or Sign in with Email</span>
+              <span>Log in with Email</span>
             </div>
 
             <div className="login-form-group">
               <label htmlFor="email">
                 Email <span className="required-star">*</span>
               </label>
-              <input type="text" placeholder="email@website.com" id="email" />
+              <input
+                type="email"
+                placeholder="email@website.com"
+                id="email"
+                ref={emailInput}
+              />
             </div>
             <div className="login-form-group">
               <label htmlFor="pwd">
@@ -41,6 +101,7 @@ const Login = () => {
                 type="password" // Changed from text to password for security
                 placeholder="Minimum 8 characters"
                 id="pwd"
+                ref={passwordInput}
               />
             </div>
 
@@ -60,7 +121,7 @@ const Login = () => {
               </a>
             </div>
 
-            <a href="#" className="rounded-button login-cta">
+            <a href="#" className="rounded-button login-cta" ref={loginButton}>
               Login
             </a>
 

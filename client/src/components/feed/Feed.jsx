@@ -4,10 +4,12 @@ import CreatableSelect from "react-select/creatable";
 import Select from "react-select/creatable";
 import FeedChildFollow from "./FeedChildFollow";
 import FeedChildRecent from "./FeedChildRecent";
-import SingleBlog from "./SingleBlog";
+import FeedChild from "./ChildFeed";
+import { useNavigate } from "react-router-dom";
 
 import { v4 as uuidv4 } from "uuid";
 const Feed = () => {
+  const navigate = useNavigate();
   const titleValue = useRef(null);
   const descriptionValue = useRef(null);
   const feedLeftSide = useRef(null);
@@ -149,8 +151,7 @@ const Feed = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWUxOTA4Mjc3MjQzYjdkMTUxZjc4Y2UiLCJpYXQiOjE3MDk3NTk0OTIsImV4cCI6MTcwOTc2MzA5Mn0.PC3TXIpIlACRNBXA2mKkYD97TpcQUeLYSFnzzBiogow",
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(jsonData),
     })
@@ -192,12 +193,16 @@ const Feed = () => {
     };
 
     if (createBlogReference.current && createBlogButtonReference.current) {
-      createBlogReference.current.style.height = "0rem";
+      // createBlogReference.current.style.height = "0rem";
       createBlogButtonReference.current.onclick = () => {
-        if (createBlogReference.current.style.height == "21rem") {
-          createBlogReference.current.style.height = "0rem";
+        if (localStorage.getItem("token")) {
+          if (createBlogReference.current.style.height == "21rem") {
+            createBlogReference.current.style.height = "0rem";
+          } else {
+            createBlogReference.current.style.height = "21rem";
+          }
         } else {
-          createBlogReference.current.style.height = "21rem";
+          navigate("/login");
         }
       };
     }
@@ -209,8 +214,7 @@ const Feed = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWUxOTA4Mjc3MjQzYjdkMTUxZjc4Y2UiLCJpYXQiOjE3MDk3NTk0OTIsImV4cCI6MTcwOTc2MzA5Mn0.PC3TXIpIlACRNBXA2mKkYD97TpcQUeLYSFnzzBiogow",
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
       .then((res) => res.json())
@@ -425,7 +429,7 @@ const Feed = () => {
           <div>
             {allBlogsArr.map((ele) => {
               return (
-                <SingleBlog
+                <FeedChild
                   key={uuidv4()}
                   name={ele.name}
                   title={ele.title}

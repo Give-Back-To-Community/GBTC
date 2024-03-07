@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 
 const generateToken = (userId) => {
-  return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: "1h" });
+  return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: "3d" });
 };
 
 const signup = async (req, res) => {
@@ -68,32 +68,33 @@ const signup = async (req, res) => {
 };
 
 const login = async (req, res) => {
+  console.log("request coming");
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
 
   const { email, password } = req.body;
-
+  // console.log(email);
   try {
     let user = await User.findOne({ email });
-
+    // console.log(user);
     if (!user) {
-      return res.status(400).json({ errors: [{ msg: "Invalid credentials" }] });
+      return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    const isMatch = bcrypt.compare(password, user.password);
-
+    const isMatch = await bcrypt.compare(password, user.password);
+    console.log("isMatch", isMatch);
     if (!isMatch) {
-      return res.status(400).json({ errors: [{ msg: "Invalid credentials" }] });
+      return res.status(400).json({ message: "password incorrect" });
     }
 
     const token = generateToken(user._id);
 
-    res.status(200).json({ token });
+    res.status(200).json({ token, name: user.name });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server Error", err);
+    res.status(500).json({ message: "Invalid credentials" });
   }
 };
 
