@@ -4,7 +4,7 @@
   box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
   position: absolute;
   width: 100%;
-  z-index: 3;
+  z-index: 1000;
 }
 
 .navbar-login {
@@ -68,7 +68,6 @@
   padding: 28px 20px;
   position: relative;
   user-select: none;
-  float: right;
 }
 
 .navbar .menu-icon .navicon {

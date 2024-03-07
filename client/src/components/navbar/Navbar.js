@@ -21,7 +21,9 @@ const Navbar = () => {
         <li>
           <a href="#careers">LiveStreams</a>
         </li>
-        <button className="navbar-login">Login</button>
+        <button className="navbar-login">
+          <Link to="/login">Login</Link>
+        </button>
         <button className="navbar-login">Sign Up</button>
       </ul>
     </header>
