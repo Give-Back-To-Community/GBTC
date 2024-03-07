@@ -19,6 +19,11 @@ function getUrlParams(url = window.location.href) {
 }
 
 const Livestreams = () => {
+  console.log(
+    process.env.REACT_APP_APP_ID,
+    process.env.REACT_APP_SERVER_SECRET
+  );
+
   const [element, setElement] = React.useState(null);
 
   React.useEffect(() => {
@@ -57,8 +62,9 @@ const Livestreams = () => {
         "&role=Audience",
     });
 
-    const appID = process.env.REACT_APP_appID;
-    const serverSecret = process.env.REACT_APP_serverSecret;
+    // Use environment variables for appID and serverSecret
+    const appID = parseInt(process.env.REACT_APP_APP_ID);
+    const serverSecret = process.env.REACT_APP_SERVER_SECRET;
     const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
       appID,
       serverSecret,
