@@ -57,8 +57,8 @@ const Livestreams = () => {
         "&role=Audience",
     });
 
-    const appID = 1607374979;
-    const serverSecret = "549109488750294e59212e88ec0c993b";
+    const appID = process.env.REACT_APP_appID;
+    const serverSecret = process.env.REACT_APP_serverSecret;
     const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
       appID,
       serverSecret,
