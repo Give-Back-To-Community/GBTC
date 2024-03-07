@@ -11,6 +11,7 @@ const SingleFeed = () => {
   const [blogComments, setBlogComments] = useState([]);
 
   useEffect(() => {
+    console.log("Calling single feed");
     fetch("http://localhost:5000/api/extra/singleBlog", {
       method: "POST",
       headers: {
@@ -59,7 +60,7 @@ const SingleFeed = () => {
           err.message
         );
       });
-  }, []);
+  }, [url]);
   return (
     <div id="single_feed_container">
       <div id="single_feed_container_first">
