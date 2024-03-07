@@ -54,6 +54,7 @@ const Register = () => {
         if (response.ok) {
           const data = await response.json();
           profilePictureUrl = data.secure_url;
+          console.log("profile picture", profilePictureUrl);
         } else {
           console.error("Image upload failed");
           return;

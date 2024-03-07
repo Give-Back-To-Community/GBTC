@@ -2,10 +2,11 @@ const Blog = require("../models/BlogModel");
 const User = require("../models/UserModel");
 const Comment = require("../models/CommentModel");
 const addCommentController = async (req, res) => {
-  const { id, content } = req.body;
+  // console.log("request coming");
+  const { url, content } = req.body;
   const userId = req.user._id;
 
-  if (!id) {
+  if (!url) {
     res.status(400).json({
       message: "No such blog exist",
     });
@@ -16,7 +17,7 @@ const addCommentController = async (req, res) => {
       content: content,
     });
     const curBlog = await Blog.findOne({
-      _id: id,
+      url,
     });
     if (!curBlog) {
       res.status(400).json({
@@ -26,7 +27,7 @@ const addCommentController = async (req, res) => {
     // console.log(curBlog);
 
     await Blog.findOneAndUpdate(
-      { _id: id },
+      { url },
       {
         $push: { comments: newComment._id },
       },
@@ -34,7 +35,7 @@ const addCommentController = async (req, res) => {
     );
 
     const c = await Blog.findOne({
-      _id: id,
+      url,
     });
     res.status(200).json({
       message: "successfully added comment",

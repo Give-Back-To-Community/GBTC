@@ -9,6 +9,7 @@ const generateToken = (userId) => {
 };
 
 const signup = async (req, res) => {
+  // console.log("signup call");
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
@@ -61,6 +62,7 @@ const signup = async (req, res) => {
     await user.save();
 
     const token = generateToken(user._id);
+    // console.log(token);
 
     res.status(200).json({ token });
   } catch (err) {
@@ -70,7 +72,7 @@ const signup = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  console.log("request coming");
+  // console.log("request coming");
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });

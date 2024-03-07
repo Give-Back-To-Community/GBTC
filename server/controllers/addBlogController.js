@@ -50,6 +50,15 @@ const addBlog = async (req, res) => {
       });
     }
 
+    await Blog.findOneAndUpdate(
+      {
+        _id: blog._id,
+      },
+      {
+        blogRecordId: curRecord._id,
+      }
+    );
+
     res.status(200).json({
       message: "successfully added blog and record bw user and blog",
       curRecord,

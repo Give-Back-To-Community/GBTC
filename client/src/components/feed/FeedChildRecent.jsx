@@ -34,8 +34,11 @@ const FeedChildRecent = () => {
           return (
             <ChildRecent
               key={uuidv4()}
-              title={val.title}
-              description={val.description}
+              title={val.title.substring(0, Math.min(val.title.length, 15))}
+              description={val.description.substring(
+                0,
+                Math.min(val.description.length, 60)
+              )}
               url={val.url}
             />
           );

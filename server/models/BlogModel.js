@@ -21,13 +21,19 @@ const BlogModel = new mongoose.Schema(
         ref: "Comment",
       },
     ],
-    likes: {
-      type: Number,
-      default: 0,
-    },
+    likes: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
     url: {
       type: String,
       required: true,
+    },
+    blogRecordId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BlogRecord",
     },
   },
   { timestamps: true }

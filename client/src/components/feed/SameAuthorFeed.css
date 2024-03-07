@@ -1,0 +1,13 @@
+#same_author_child {
+  margin-top: 1rem;
+  margin-left: 10px;
+  cursor: pointer;
+}
+#same_author_child:hover {
+  text-decoration: underline;
+  background-color: #f3f4f6;
+}
+#same_author_child_title {
+  font-weight: 500;
+  font-family: sans-serif;
+}

@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <header class="navbar">
       <Link to="/">
-        <img src="gbtc-logo.png" alt="logo" className="gbtc-logo" />
+        <img src="/public/GBTC-logo.png" alt="logo" className="gbtc-logo" />
       </Link>
       <input class="menu-btn" type="checkbox" id="menu-btn" />
       <label class="menu-icon" for="menu-btn">
@@ -54,7 +54,12 @@ const Navbar = () => {
             >
               <button className="navbar-login">Login</button>
             </Link>
-            <button className="navbar-login">Sign Up</button>
+            <Link
+              style={{ textDecoration: "none", border: "none", color: "white" }}
+              to="/register"
+            >
+              <button className="navbar-login">Sign Up</button>
+            </Link>
           </>
         )}
       </ul>

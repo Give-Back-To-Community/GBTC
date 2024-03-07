@@ -2,7 +2,7 @@
   gap: 17px;
   display: flex;
   padding-top: 1rem;
-  margin-top: 4.4rem;
+  /* margin-top: 4.4rem; */
   background-color: #f3f4f6;
   /* height: 50rem; */
 }
@@ -94,7 +94,7 @@
 #feed_container_middle_blogDetails {
   height: 0rem;
   transition: height 1s;
-  overflow: hidden;
+  overflow-y: scroll;
 }
 #feed_container_middle_blogDetails_title {
   font-size: large;

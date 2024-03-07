@@ -136,6 +136,14 @@ const Feed = () => {
 
     const blogTitle = e.target.createBlogTitle.value;
     const blogDescription = e.target.createBlogDescription.value;
+    if (blogDescription == "") {
+      alert("Please add description");
+      return;
+    }
+    if (blogTitle == "") {
+      alert("Please add title");
+      return;
+    }
     const techy = [];
     techStackOfCreatingBlog.map((ele) => {
       techy.push(ele.label);
