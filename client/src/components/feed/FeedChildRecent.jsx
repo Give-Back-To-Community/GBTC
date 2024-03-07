@@ -2,6 +2,7 @@ import "./FeedChildRecent.css";
 import { v4 as uuidv4 } from "uuid";
 import ChildRecent from "./ChildRecent";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const FeedChildRecent = () => {
   const [recentBlogsArr, setRecentBlogsArr] = useState([]);
@@ -15,6 +16,7 @@ const FeedChildRecent = () => {
           const tempData = {
             title: ele.title,
             description: ele.description,
+            url: ele.url,
           };
           recBlog.push(tempData);
         });
@@ -23,7 +25,7 @@ const FeedChildRecent = () => {
       .catch((err) => {
         console.log("Some error occurred while fetching recent blogs", err);
       });
-  });
+  }, []);
   return (
     <div id="feed_child_recentContainer">
       <div id="feed_child_recentContainerTitle">Recently Uploaded Blogs</div>
@@ -34,6 +36,7 @@ const FeedChildRecent = () => {
               key={uuidv4()}
               title={val.title}
               description={val.description}
+              url={val.url}
             />
           );
         })}

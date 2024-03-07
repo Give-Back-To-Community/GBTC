@@ -25,6 +25,10 @@ const BlogModel = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    url: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

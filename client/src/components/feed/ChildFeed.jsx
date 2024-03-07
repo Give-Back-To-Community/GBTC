@@ -1,6 +1,6 @@
-import "./SingleBlog.css";
+import "./ChildFeed.css";
 
-const SingleBlog = (props) => {
+const ChildFeed = (props) => {
   return (
     <div id="single_blog_container">
       <div id="single_blog_container_authorName">
@@ -25,4 +25,4 @@ const SingleBlog = (props) => {
     </div>
   );
 };
-export default SingleBlog;
+export default ChildFeed;

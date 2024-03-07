@@ -1,12 +1,13 @@
 const Blog = require("../models/BlogModel");
 const BlogRecord = require("../models/BlogRecordModel");
 const User = require("../models/UserModel");
-
+const shortId = require("shortid");
 const addBlog = async (req, res) => {
   const { title, description, techStackUsed } = req.body;
   const _id = req.user._id;
   // console.log(_id);
   const user = await User.findOne({ _id });
+  const url = shortId.generate();
 
   if (!user) {
     res.status(500).json({
@@ -17,6 +18,7 @@ const addBlog = async (req, res) => {
     title,
     description,
     techStackUsed,
+    url,
   });
 
   if (!blog) {

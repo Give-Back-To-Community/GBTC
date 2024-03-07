@@ -4,6 +4,7 @@ import Navbar from "./components/navbar/Navbar";
 import Feed from "./components/feed/Feed";
 import "./App.css";
 import Login from "./pages/login/Login";
+import SingleFeed from "./components/feed/SingleFeed";
 // import ImageSlider from "./pages/home/ImageSlider";
 // import Community from "./pages/home/Community";
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/feed" element={<Feed />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/feed/:url" element={<SingleFeed />} />
         </Routes>
       </BrowserRouter>
     </div>
