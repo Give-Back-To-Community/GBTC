@@ -93,7 +93,7 @@
 #feed_container_middle_blogDetails {
   height: 0rem;
   transition: height 1s;
-  overflow: hidden;
+  overflow-y: scroll;
 }
 #feed_container_middle_blogDetails_title {
   font-size: large;

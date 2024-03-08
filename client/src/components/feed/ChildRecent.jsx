@@ -7,8 +7,10 @@ const ChildRecent = (props) => {
       to={`/feed/${props.url}`}
     >
       <div id="child_feed_recent">
-        <div id="child_feed_recent_title">{props.title}</div>
-        <div id="child_feed_recent_description">{props.description}</div>
+        <div id="child_feed_recent_title">{props.title + "..."}</div>
+        <div id="child_feed_recent_description">
+          {props.description + "..."}
+        </div>
       </div>
     </Link>
   );

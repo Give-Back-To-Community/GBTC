@@ -7,6 +7,7 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import PageNotFound from "./pages/404/PageNotFound";
 import Livestreams from "./pages/livestreams/Livestreams";
+import SingleFeed from "./components/feed/SingleFeed";
 // import ImageSlider from "./pages/home/ImageSlider";
 // import Community from "./pages/home/Community";
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/livestreams" element={<Livestreams />} />
           <Route path="/livestreams/room/:roomID" element={<Livestreams />} />
           <Route path="*" element={<PageNotFound />} />
+          <Route path="/feed/:url" element={<SingleFeed />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -5,11 +5,13 @@ const User = require("../models/UserModel");
 const auth = async (req, res, next) => {
   // Get token from the Authorization header
   const authHeader = req.headers["authorization"];
+  console.log("in auth", authHeader);
   if (!authHeader) {
     return res.status(401).json({ message: "Authorization header missing" });
   }
 
   const token = authHeader.split(" ")[1];
+  console.log(token);
   if (!token) {
     return res.status(401).json({ message: "Bearer token missing" });
   }
@@ -26,7 +28,7 @@ const auth = async (req, res, next) => {
 
     // Set user object to req.user
     req.user = user;
-    // console.log(req.user); // Now req.user should contain the user object
+    console.log(req.user); // Now req.user should contain the user object
     next();
   } catch (error) {
     console.error(error);

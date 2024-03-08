@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const fetchRecentBlogsController = require("../controllers/fetchRecentBlogsController");
-
+const fetchCurAuthorBlogsController = require("../controllers/fetchCurAuthorBlogsController");
+const auth = require("../middlewares/auth");
 const fetchSingleBlogController = require("../controllers/fetchSingleBlogController");
 router.get("/recentBlogs", fetchRecentBlogsController);
-router.post("/singleBlog", fetchSingleBlogController);
+router.post("/singleBlog", auth, fetchSingleBlogController);
+router.post("/curAuthorBlogs", fetchCurAuthorBlogsController);
 module.exports = router;
