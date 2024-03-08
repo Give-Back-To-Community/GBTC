@@ -5,6 +5,9 @@ const fetchCurAuthorBlogsController = async (req, res) => {
   const { url } = req.body;
 
   const blog = await Blog.findOne({ url });
+  if (!blog) {
+    res.status(404).json({ message: "No such blog present" });
+  }
 
   BlogRecord.findOne({ _id: blog.blogRecordId })
     .populate("blogs")

@@ -8,7 +8,10 @@ const viewAllBlogsController = (req, res) => {
       path: "blogs",
       populate: {
         path: "comments",
-        model: "Comment",
+        populate: {
+          path: "user",
+          model: "User",
+        },
       },
     })
     .then((populatedQuery) => {

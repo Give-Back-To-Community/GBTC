@@ -1,3 +1,130 @@
 #single_blog_container {
   margin-top: 1rem;
+  /* border: 1px solid; */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 6px 0 #c5c4c4;
+  padding: 0.1px;
+}
+#single_blog_container_openBlog {
+  margin-top: 1rem;
+  margin-left: 43vw;
+  font-size: xx-large;
+  cursor: pointer;
+  padding: 10px;
+}
+#single_blog_container_openBlog:hover {
+  background-color: #c5c4c4;
+  border-radius: 50%;
+}
+#single_blog_container_authorName {
+  font-size: larger;
+  padding-left: 15px;
+  margin-top: -3rem;
+}
+#single_blog_container_authorCollege {
+  font-size: small;
+  padding-left: 15px;
+}
+#single_blog_container_title {
+  font-size: larger;
+  padding-left: 15px;
+  margin-top: 1rem;
+  font-weight: 700;
+}
+#single_blog_container_description {
+  padding-left: 15px;
+  margin-top: 5px;
+  width: 46vw;
+}
+#single_blog_container_image {
+  height: 22.2rem;
+}
+#single_blog_container_imageContainer {
+  margin-top: 1rem;
+}
+
+#single_blog_container_techStack {
+  margin-top: 1rem;
+}
+#single_blog_container_techStack_stack {
+  display: flex;
+  gap: 10px;
+  padding-left: 15px;
+  flex-wrap: wrap;
+  margin-top: 7px;
+}
+#single_blog_container_techStack_child {
+  border: 1px solid;
+  background-color: #f3f4f6;
+  padding: 7px;
+  border-radius: 3px;
+}
+#single_blog_container_techStack_title {
+  font-size: large;
+  padding-left: 15px;
+}
+#single_blog_container_likes {
+  margin-top: 1rem;
+  padding-left: 15px;
+}
+#single_blog_container_comments {
+  padding-left: 15px;
+
+  margin-top: 2rem;
+}
+#single_blog_container_comments_title {
+  border-radius: 7px;
+  background-color: #4e6ef2;
+  width: 8rem;
+  cursor: pointer;
+  text-align: center;
+  color: white;
+  padding: 7px;
+}
+#single_blog_container_comments_description {
+  margin-top: 1rem;
+  overflow: hidden;
+  transition: max-height 1s;
+  height: 0rem;
+}
+#single_blog_container_comments_description_postComment {
+  display: flex;
+}
+#single_blog_container_comments_description_postComment_textArea {
+  width: 467px;
+  height: 29px;
+}
+#single_blog_container_comments_description_postComment_title {
+  border-radius: 6px;
+  text-align: center;
+  padding: 5px;
+  margin-left: 1rem;
+  font-size: medium;
+  color: white;
+  cursor: pointer;
+  background-color: grey;
+}
+#single_blog_container_comments_description_showComment {
+  border: 1px solid;
+  overflow-y: scroll;
+  max-height: 20rem;
+  margin-top: 1rem;
+  padding: 8px;
+  background-color: #f3f4f6;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  width: 46vw;
+}
+#single_blog_container_comments_description_showComment_container:hover {
+  background-color: lightgray;
+}
+#single_blog_container_comments_description_showComment_container_name {
+  margin-top: 1rem;
+}
+#single_blog_container_comments_description_showComment_container_college {
+  font-size: small;
+}
+#single_blog_container_comments_description_showComment_container_content {
+  margin-top: 4px;
 }

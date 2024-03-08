@@ -32,6 +32,7 @@
   margin: auto auto auto;
   background: var(--primary-color);
   height: 35px;
+  cursor: pointer;
   width: 30%;
 }
 

@@ -6,7 +6,7 @@
   display: flex;
 }
 #single_feed_container_left {
-  width: 59%;
+  width: 50%;
   border-radius: 5px;
   padding: 8px;
   background-color: white;
@@ -73,9 +73,9 @@
   border-radius: 5px;
   background-color: white;
   border: 1px solid;
-  height: 26rem;
+  height: 29.5rem;
   overflow-y: scroll;
-  width: 21%;
+  width: 25%;
 }
 #single_feed_container_middle_title {
   font-weight: 500;
@@ -87,8 +87,8 @@
   border: 1px solid;
   border-radius: 5px;
   background-color: white;
-  height: 26rem;
-  width: 21%;
+  height: 29.5rem;
+  width: 25%;
 }
 #single_feed_container_second {
   background-color: #f3f4f6;
@@ -105,6 +105,14 @@
 #single_feed_container_second_commentContainer_name {
   margin-top: 1rem;
 }
+#single_feed_container_second_commentContainer_college {
+  font-size: small;
+}
+#single_feed_container_second_commentContainer_content {
+  border-bottom: 1px solid #a3a3a3;
+  word-wrap: break-word;
+  padding-bottom: 7px;
+}
 #single_feed_container_second_form {
   margin-left: 1rem;
   margin-top: 1rem;
@@ -117,4 +125,20 @@
   margin-left: 2rem;
   padding: 10px;
   cursor: pointer;
+}
+#single_feed_noComment {
+  margin-left: 1rem;
+  margin-top: 1rem;
+  font-size: large;
+  margin-bottom: 1rem;
+}
+#noLoginLeftPart {
+  width: 50%;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: white;
+}
+#noBlogFromAuthor {
+  margin-top: 1rem;
+  padding-left: 12px;
 }

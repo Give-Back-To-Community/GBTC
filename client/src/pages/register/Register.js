@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./Register.css";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,6 +19,7 @@ const Register = () => {
     socialmedia: "",
   });
   const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME;
   const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET;
@@ -34,6 +37,7 @@ const Register = () => {
   };
 
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
 
     let profilePictureUrl = "";
@@ -80,6 +84,12 @@ const Register = () => {
       if (response.ok) {
         const result = await response.json();
         console.log("Registration success:", result);
+        setLoading(false);
+        localStorage.setItem("token", result.token);
+        localStorage.setItem("name", result.name);
+        alert("Register successfully");
+        navigate("/");
+        window.location.reload();
       } else {
         console.error("Registration failed");
       }
@@ -223,6 +233,7 @@ const Register = () => {
               className="file-input"
             />
           </div>
+          {loading ? <div>Loading...</div> : ""}
           <button type="submit" className="registration-submit-btn">
             Submit
           </button>

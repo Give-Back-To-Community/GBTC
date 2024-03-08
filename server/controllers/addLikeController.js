@@ -2,7 +2,7 @@ const Blog = require("../models/BlogModel");
 
 const addLikeController = async (req, res) => {
   try {
-    console.log("");
+    // console.log("");
     const { url } = req.body;
     const userId = req.user._id;
 
@@ -12,13 +12,15 @@ const addLikeController = async (req, res) => {
     if (!curBlog) {
       return res.status(400).json({
         message: "No blog found with the provided URL",
+        upvote: false,
       });
     }
-    console.log("currrrr", curBlog);
+    // console.log("currrrr", curBlog);
     // Check if the user has already liked the blog
     if (curBlog.likes.includes(userId)) {
-      return res.status(400).json({
+      return res.status(200).json({
         message: "You have already liked this blog",
+        upvote: true,
       });
     }
 
@@ -27,10 +29,11 @@ const addLikeController = async (req, res) => {
 
     // Save the updated blog document
     await curBlog.save();
-    console.log("currrrr", curBlog);
+    // console.log("currrrr", curBlog);
 
     return res.status(200).json({
       message: "Successfully liked the blog",
+      upvote: false,
     });
   } catch (error) {
     console.error("Error adding like to blog:", error);

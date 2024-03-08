@@ -39,7 +39,11 @@ const addCommentController = async (req, res) => {
     });
     res.status(200).json({
       message: "successfully added comment",
-      newComment,
+      newComment: {
+        content: newComment.content,
+        name: curUser.name,
+        college: curUser.college,
+      },
     });
   }
 };

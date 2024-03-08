@@ -44,8 +44,6 @@ const Login = () => {
             setLoading(false);
             localStorage.setItem("token", response.token);
             localStorage.setItem("name", response.name);
-            console.log("name", localStorage.getItem("name"));
-
             alert("login successfully");
             navigate("/");
             window.location.reload();

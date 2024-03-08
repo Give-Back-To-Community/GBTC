@@ -16,8 +16,11 @@ const Feed = () => {
   const feedMiddleSide = useRef(null);
   const createBlogButtonReference = useRef(null);
   const createBlogReference = useRef(null);
+  const nameValue = useRef(null);
 
+  const [isBlogLoading, setIsBlogLoading] = useState(false);
   // const [scrollY, setScrollY] = useEffect(2);
+  const [isUpdated, setIsUpdated] = useState();
   const [selectedUniversity, setSelectedUniversity] = useState(null);
   const [selectedLocation, setSelectedLocaton] = useState(null);
   const [selectedCompany, setSelectedCompany] = useState(null);
@@ -26,12 +29,11 @@ const Feed = () => {
   const [selectedDescription, setSelectedDescription] = useState(null);
   const [selectedTechStack, setSelectedTechStack] = useState([]);
   const [techStackOfCreatingBlog, setTechStackOfCreatingBlog] = useState([]);
-  const [recentBlogsArr, setRecentBlogsArr] = useState([]);
-  // const [selectedRole, setSelectedRole] = useState(null);
-
   const [allBlogsArr, setAllBlogsArr] = useState([]);
+  const [globalAllBlogsArr, setGlobalAllBlogsArr] = useState([]);
+  const [selectedName, setSelectedName] = useState(null);
   const univOptions = [
-    { value: "stanford", label: "Stanford University" },
+    { value: "chitkara", label: "Chitkara University" },
     { value: "harvard", label: "Harvard University" },
     { value: "mit", label: "Massachusetts Institute of Technology" },
     { value: "caltech", label: "California Institute of Technology" },
@@ -91,6 +93,11 @@ const Feed = () => {
       setSelectedTitle(titleValue.current.value);
     }
   };
+  const handleChangeName = () => {
+    if (nameValue.current) {
+      setSelectedName(nameValue.current.value);
+    }
+  };
 
   const handleChangeDescription = (e) => {
     if (descriptionValue.current) {
@@ -100,37 +107,80 @@ const Feed = () => {
 
   const searchFilter = () => {
     console.log(
-      selectedCompany,
       selectedDescription,
-      selectedLocation,
-      selectedRole,
       selectedTechStack,
       selectedTitle,
-      selectedUniversity
+      selectedUniversity,
+      selectedName
     );
+    // console.log(allBlogsArr);
+    // console.log(selectedUniversity);
+
+    const filteredData = globalAllBlogsArr.filter((blog) => {
+      const titleMatch =
+        !selectedTitle ||
+        blog.title.toLowerCase().includes(selectedTitle.toLowerCase());
+      const descriptionMatch =
+        !selectedDescription ||
+        blog.description
+          .toLowerCase()
+          .includes(selectedDescription.toLowerCase());
+      const nameMatch =
+        !selectedName ||
+        blog.name.toLowerCase().includes(selectedName.toLowerCase());
+      const universityMatch =
+        !selectedUniversity ||
+        blog.college
+          .toLowerCase()
+          .includes(selectedUniversity.label.toLowerCase());
+      const techStackMatch =
+        !selectedTechStack ||
+        selectedTechStack.some((filterTech) =>
+          blog.techStackUsed.some(
+            (blogTech) =>
+              blogTech.toLowerCase() === filterTech.label.toLowerCase()
+          )
+        );
+
+      return (
+        titleMatch &&
+        descriptionMatch &&
+        nameMatch &&
+        universityMatch &&
+        techStackMatch
+      );
+    });
+
+    setAllBlogsArr(filteredData);
+    console.log(filteredData);
   };
   const resetFilter = () => {
-    if (titleValue.current && descriptionValue.current) {
+    if (titleValue.current && descriptionValue.current && nameValue.current) {
       titleValue.current.value = "";
       descriptionValue.current.value = "";
       setSelectedCompany(null);
+      setSelectedUniversity(null);
       setSelectedDescription(null);
       setSelectedLocaton(null);
+      setSelectedTitle(null);
+      setSelectedDescription(null);
       setSelectedRole(null);
       setSelectedTechStack(null);
+      nameValue.current.value = "";
+      setSelectedName(null);
+      setAllBlogsArr(globalAllBlogsArr);
     }
   };
 
   const handleChangeTechStack = (selectedOptions) => {
-    console.log("selected option", selectedOptions);
+    // console.log("selected option", selectedOptions);
     setSelectedTechStack(selectedOptions);
-    console.log(selectedOptions); // Log the selected options array
+    // console.log(selectedOptions); // Log the selected options array
   };
 
   const handleChangeTechStackOfCreatingBlog = (selectedOptions) => {
     setTechStackOfCreatingBlog(selectedOptions);
   };
-
   const submitBlogFormDetail = (e) => {
     e.preventDefault();
 
@@ -145,7 +195,7 @@ const Feed = () => {
       return;
     }
     const techy = [];
-    techStackOfCreatingBlog.map((ele) => {
+    techStackOfCreatingBlog?.map((ele) => {
       techy.push(ele.label);
     });
     console.log(techy, "techy");
@@ -154,7 +204,6 @@ const Feed = () => {
       description: blogDescription,
       techStackUsed: techy,
     };
-
     fetch("http://localhost:5000/api/blog/addBlog", {
       method: "POST",
       headers: {
@@ -165,41 +214,18 @@ const Feed = () => {
     })
       .then((res) => res.json())
       .then((response) => {
-        console.log("in client side response while adding blog", response);
+        // console.log("in client side response while adding blog", response);
         e.target.createBlogTitle.value = "";
         e.target.createBlogDescription.value = "";
         setTechStackOfCreatingBlog(null);
+        setIsUpdated(response);
+        console.log("isUpdated", isUpdated);
       })
       .catch((err) => {
         console.log("Some error occurred while adding blog", err);
       });
   };
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     setScrollY(window.scrollY);
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-  // });
   useEffect(() => {
-    window.onscroll = () => {
-      const scrollY = window.scrollY;
-      // console.log(scrollY);
-      if (feedLeftSide.current && feedMiddleSide.current) {
-        // console.log("yes outer");
-        if (scrollY >= 79.3) {
-          // console.log("yes");
-          feedLeftSide.current.style.position = "fixed";
-          feedMiddleSide.current.style.marginLeft = "24.45vw";
-          feedLeftSide.current.style.marginTop = "-5rem";
-        } else {
-          feedLeftSide.current.style.position = "static";
-          feedMiddleSide.current.style.marginLeft = "0vw";
-          feedLeftSide.current.style.marginTop = "0rem";
-        }
-      }
-    };
-
     if (createBlogReference.current && createBlogButtonReference.current) {
       // createBlogReference.current.style.height = "0rem";
       createBlogButtonReference.current.onclick = () => {
@@ -214,9 +240,11 @@ const Feed = () => {
         }
       };
     }
-  });
+  }, []);
 
   useEffect(() => {
+    setIsBlogLoading(true);
+    console.log("inside all blog fetching");
     //all blogs fetch call
     fetch("http://localhost:5000/api/blog/viewBlog/allBlogs", {
       method: "GET",
@@ -227,34 +255,43 @@ const Feed = () => {
     })
       .then((res) => res.json())
       .then((response) => {
-        console.log("response", response);
         const curBlogsArr = [];
         response.blogs.map((val) => {
           val.blogs.map((data) => {
             const curComments = [];
             data.comments.map((comment) => {
-              curComments.push(comment.content);
+              curComments.push(
+                JSON.stringify({
+                  name: comment.user.name,
+                  college: comment.user.college,
+                  content: comment.content,
+                })
+              );
             });
+            // console.log("cur comment", curComments);
 
             const tempData = {
               name: val.user.name,
+              college: val.user.college,
               title: data.title,
               description: data.description,
               techStackUsed: data.techStackUsed,
+              likes: data.likes ? data.likes.length : 0,
               comments: curComments,
+              url: data.url,
             };
             curBlogsArr.push(tempData);
-            // console.log("tempData", curComments);
           });
         });
 
         setAllBlogsArr(curBlogsArr);
-        console.log(allBlogsArr);
+        setGlobalAllBlogsArr(curBlogsArr);
+        setIsBlogLoading(false);
       })
       .catch((err) => {
         console.log("Some error occurred while fetching the all blogs", err);
       });
-  }, []);
+  }, [isUpdated]);
   return (
     <div id="feed_container">
       <div id="feed_container_left" ref={feedLeftSide}>
@@ -280,6 +317,7 @@ const Feed = () => {
         </Select>
 
         {/* //location */}
+        {/*
         <div id="feed_container_location" class="feed_container_leftChild">
           Select location
         </div>
@@ -297,7 +335,7 @@ const Feed = () => {
             </div>
           )}
         </Select>
-        {/* //company */}
+        {/* //company 
         <div id="feed_container_company" class="feed_container_leftChild">
           Select company
         </div>
@@ -316,7 +354,8 @@ const Feed = () => {
           )}
         </Select>
 
-        {/* //role */}
+        {/* //role */
+        /*}
         <div id="feed_container_role" class="feed_container_leftChild">
           Select role
         </div>
@@ -333,7 +372,7 @@ const Feed = () => {
               <p>{selectedRole.label}</p>
             </div>
           )}
-        </Select>
+        </Select> 
 
         {/* //title */}
 
@@ -368,6 +407,23 @@ const Feed = () => {
           ></input>
         </form>
 
+        {/* name */}
+
+        <div id="feed_container_name" class="feed_container_leftChild">
+          Select Name
+        </div>
+        <form>
+          <input
+            onChange={handleChangeName}
+            id="feed_container_name_input"
+            type="text"
+            className="feed_container_leftBoxInputChild"
+            placeholder="Enter your name here"
+            name="specifiedname"
+            ref={nameValue}
+          ></input>
+        </form>
+
         <div id="feed_container_techStack" class="feed_container_leftChild">
           Choose Tech Stack
         </div>
@@ -394,6 +450,9 @@ const Feed = () => {
           ref={createBlogButtonReference}
         >
           Create New Blog
+          <span class="material-symbols-outlined" id="addNewBlogIcon">
+            add
+          </span>
         </div>
         <form
           onSubmit={submitBlogFormDetail}
@@ -433,27 +492,35 @@ const Feed = () => {
             Reset
           </button>
         </form>
-        {allBlogsArr.length > 0 ? (
-          <div>
-            {allBlogsArr.map((ele) => {
-              return (
-                <FeedChild
-                  key={uuidv4()}
-                  name={ele.name}
-                  title={ele.title}
-                  description={ele.description}
-                  techStackUsed={ele.techStackUsed}
-                  comments={ele.comments}
-                />
-              );
-            })}
-          </div>
+        {!isBlogLoading && allBlogsArr ? (
+          allBlogsArr.length > 0 ? (
+            <div>
+              {allBlogsArr.map((ele) => {
+                return (
+                  <FeedChild
+                    key={uuidv4()}
+                    name={ele.name}
+                    college={ele.college}
+                    title={ele.title}
+                    description={ele.description}
+                    techStackUsed={ele.techStackUsed}
+                    comments={ele.comments}
+                    likes={ele.likes}
+                    url={ele.url}
+                  />
+                );
+              })}
+            </div>
+          ) : (
+            <div>No Blogs present</div>
+          )
         ) : (
-          <div>No Blogs present</div>
+          <div>Loading...</div>
         )}
       </div>
+
       <div id="feed_container_right">
-        <FeedChildRecent />
+        <FeedChildRecent key={isUpdated} />
       </div>
     </div>
   );
