@@ -26,3 +26,29 @@
   width: 600px;
   height: 600px;
 }
+
+@media screen and (max-width: 768px) {
+  .pageNotFound-main {
+    flex-direction: column;
+  }
+  .pageNotFound-left-content {
+    width: 100%;
+  }
+  .not-found-image {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media screen and (max-width: 408px) {
+  .pageNotFound-main {
+    flex-direction: column;
+  }
+  .pageNotFound-left-content {
+    width: 100%;
+  }
+  .not-found-image {
+    width: 150px;
+    height: 150px;
+  }
+}

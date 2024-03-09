@@ -8,6 +8,7 @@ import Register from "./pages/register/Register";
 import PageNotFound from "./pages/404/PageNotFound";
 import Livestreams from "./pages/livestreams/Livestreams";
 import SingleFeed from "./components/feed/SingleFeed";
+import Codepair from "./pages/codepair/Codepair";
 // import ImageSlider from "./pages/home/ImageSlider";
 // import Community from "./pages/home/Community";
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/livestreams/room/:roomID" element={<Livestreams />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/feed/:url" element={<SingleFeed />} />
+          <Route path="/codepair" element={<Codepair />} />
         </Routes>
       </BrowserRouter>
     </div>
