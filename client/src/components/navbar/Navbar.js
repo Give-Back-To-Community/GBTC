@@ -31,7 +31,9 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <a href="#about">Chat</a>
+          <Link to="/chat">
+            <div href="#about">Chat</div>
+          </Link>
         </li>
         <li>
           <Link

@@ -244,7 +244,7 @@ const SingleFeed = () => {
             <div id="single_feed_container_left_image">
               <img
                 id="single_feed_container_left_imageReal"
-                src="d36d1c7d.webp"
+                src="/d36d1c7d.webp"
                 alt="blogImage"
               ></img>
             </div>
