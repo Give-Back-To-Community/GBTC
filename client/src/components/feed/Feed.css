@@ -6,7 +6,7 @@
   /* height: 50rem; */
 }
 #feed_container_left {
-  height: 29.6rem;
+  height: 85vh;
   position: fixed;
   width: 23.5%;
   background-color: white;
@@ -99,7 +99,7 @@
   padding-bottom: 11px;
   padding-top: 4px;
   border-radius: 10px;
-  margin-left: 28rem;
+  margin-left: 35vw;
 }
 #feed_container_middle_blogDetails {
   height: 0rem;
@@ -155,7 +155,7 @@
   cursor: pointer;
 }
 #feed_container_right {
-  height: 30rem;
+  height: 86vh;
   background-color: white;
   border-radius: 10px;
   border: 1px solid;

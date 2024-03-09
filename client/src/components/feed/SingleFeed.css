@@ -22,9 +22,12 @@
   word-wrap: break-word;
 }
 #single_feed_container_left_image {
-  height: 12rem;
+  height: 61vh;
   margin-top: 1rem;
   background-color: #f3f4f6;
+}
+#single_feed_container_left_imageReal {
+  height: 61vh;
 }
 #single_feed_container_left_likes {
   margin-top: 1rem;
@@ -138,7 +141,7 @@
   padding: 8px;
   background-color: white;
 }
-#noBlogFromAuthor {
+.noBlogFromAuthor {
   margin-top: 1rem;
   padding-left: 12px;
 }

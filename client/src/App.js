@@ -7,6 +7,7 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import PageNotFound from "./pages/404/PageNotFound";
 import Livestreams from "./pages/livestreams/Livestreams";
+import Chat from "./components/chat/chat";
 import SingleFeed from "./components/feed/SingleFeed";
 // import ImageSlider from "./pages/home/ImageSlider";
 // import Community from "./pages/home/Community";
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/livestreams/room/:roomID" element={<Livestreams />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/feed/:url" element={<SingleFeed />} />
+          <Route path="/chat" element={<Chat />} />
         </Routes>
       </BrowserRouter>
     </div>
