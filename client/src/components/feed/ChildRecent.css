@@ -9,5 +9,9 @@
 }
 #child_feed_recent_title {
   font-weight: 500;
+  margin-top: 4px;
   font-family: sans-serif;
+}
+#child_feed_recent_userCollege {
+  font-size: small;
 }

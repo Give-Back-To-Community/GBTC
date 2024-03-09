@@ -11,7 +11,7 @@ const fetchSingleBlogController = async (req, res) => {
   }
   const curBlog = await Blog.findOne({ url });
   const isLikedByCurrentUser = curBlog.likes && curBlog.likes.includes(userId);
-
+  // console.log("isUpvoted", isLikedByCurrentUser);
   let blogRecord;
 
   Blog.findOne({ url })

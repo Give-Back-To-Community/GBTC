@@ -7,8 +7,7 @@ const Navbar = () => {
   useEffect(() => {
     if (logOut.current) {
       logOut.current.onclick = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("name");
+        localStorage.clear();
         window.location.reload();
       };
     }
@@ -16,7 +15,7 @@ const Navbar = () => {
   return (
     <header class="navbar">
       <Link to="/">
-        <img src="/public/GBTC-logo.png" alt="logo" className="gbtc-logo" />
+        <img src="GBTC-logo.png" alt="logo" className="gbtc-logo" />
       </Link>
       <input class="menu-btn" type="checkbox" id="menu-btn" />
       <label class="menu-icon" for="menu-btn">
@@ -35,7 +34,12 @@ const Navbar = () => {
           <a href="#about">Chat</a>
         </li>
         <li>
-          <a href="#careers">LiveStreams</a>
+          <Link
+            style={{ textDecoration: "none", border: "none", color: "black" }}
+            to="/livestreams"
+          >
+            <div>LiveStreams</div>
+          </Link>
         </li>
         {localStorage.getItem("token") != null ? (
           <>

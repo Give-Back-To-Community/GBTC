@@ -9,12 +9,11 @@ const generateToken = (userId) => {
 };
 
 const signup = async (req, res) => {
-  // console.log("signup call");
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-
+  // c/onsole.log("signup call");
   const {
     name,
     age,
@@ -60,11 +59,11 @@ const signup = async (req, res) => {
     user.password = await bcrypt.hash(password, salt);
 
     await user.save();
-
+    // console.log(user);
     const token = generateToken(user._id);
     // console.log(token);
 
-    res.status(200).json({ token });
+    res.status(200).json({ token, name: user.name });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
 
+import { Link } from "react-router-dom";
 function randomID(len) {
   let result = "";
   var chars = "12345qwertyuiopasdfgh67890jklmnbvcxzMNBVCZXASDQWERTYHGFUIOLKJP",
@@ -91,11 +92,26 @@ const Livestreams = () => {
   }, [element]); // This effect depends on `element` being set
 
   return (
-    <div
-      className="myCallContainer"
-      ref={setElement}
-      style={{ width: "100vw", height: "100vh" }}
-    ></div>
+    <>
+      {localStorage.getItem("token") ? (
+        <div
+          className="myCallContainer"
+          ref={setElement}
+          style={{ width: "100vw", height: "100vh" }}
+        ></div>
+      ) : (
+        <div
+          style={{
+            fontSize: "x-large",
+            marginTop: "2rem",
+            textAlign: "center",
+          }}
+        >
+          {" "}
+          Please <Link to="/login">Login</Link> first
+        </div>
+      )}
+    </>
   );
 };
 

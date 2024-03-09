@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "./ChildRecent.css";
 import { Link } from "react-router-dom";
 const ChildRecent = (props) => {
@@ -7,6 +8,8 @@ const ChildRecent = (props) => {
       to={`/feed/${props.url}`}
     >
       <div id="child_feed_recent">
+        <div id="child_feed_recent_userName">{props.userName}</div>
+        <div id="child_feed_recent_userCollege">{props.userCollege}</div>
         <div id="child_feed_recent_title">{props.title + "..."}</div>
         <div id="child_feed_recent_description">
           {props.description + "..."}
