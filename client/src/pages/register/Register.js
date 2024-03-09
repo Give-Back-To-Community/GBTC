@@ -81,6 +81,8 @@ const Register = () => {
         body: JSON.stringify(completeFormData),
       });
 
+      console.log(response);
+
       if (response.ok) {
         const result = await response.json();
         console.log("Registration success:", result);
@@ -91,6 +93,9 @@ const Register = () => {
         navigate("/");
         window.location.reload();
       } else {
+        const res = await response.json();
+        // console.log("Registration failed", res);
+        alert("Registration failed: " + res.errors[0].msg);
         console.error("Registration failed");
       }
     } catch (error) {
