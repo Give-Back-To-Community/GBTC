@@ -38,6 +38,14 @@ const Navbar = () => {
         <li>
           <Link
             style={{ textDecoration: "none", border: "none", color: "black" }}
+            to="/Codepair"
+          >
+            <div>Codepair</div>
+          </Link>
+        </li>
+        <li>
+          <Link
+            style={{ textDecoration: "none", border: "none", color: "black" }}
             to="/livestreams"
           >
             <div>LiveStreams</div>

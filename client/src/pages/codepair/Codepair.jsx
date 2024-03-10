@@ -8,8 +8,9 @@ import "codemirror/mode/javascript/javascript";
 import "codemirror/mode/clike/clike";
 import "codemirror/mode/python/python";
 import "./Codepair.css";
+import { Link } from "react-router-dom";
 const socket = io.connect("http://localhost:5000");
-
+axios.defaults.baseURL = "http://localhost:5000";
 function Codepair() {
   const [code, setCode] = useState("");
   const [output, setOutput] = useState("");
@@ -26,19 +27,23 @@ function Codepair() {
   const handleCodeChange = (editor, data, value) => {
     setCode(value);
     if (room) {
-      socket.emit("codeChange", value, room); // Emit changes to the room
+      socket.emit("codeChange", value, room);
     }
   };
 
   const compileCode = () => {
+    setOutput("compiling");
+    console.log("HIT");
+    console.log(code, language);
     axios
-      .post("/compile", { code, language }) // Send both code and language
+      .post("/compile", { code, language })
       .then((response) => {
-        const output = response.data.output; // Assuming this is how the compilation API returns the output
-        setOutput(output); // Display the output in the UI
+        const output = response.data.output;
+        console.log("Output:", output);
+        setOutput(output);
       })
       .catch((error) => {
-        console.error("Failed to compile code:", error);
+        // console.error("Failed to compile code:", error);
       });
   };
 
@@ -54,11 +59,11 @@ function Codepair() {
       case "python":
         return "python";
       case "cpp":
-        return "text/x-c++src"; // Mode for C++
+        return "text/x-c++src";
       case "java":
-        return "text/x-java"; // Mode for Java
+        return "text/x-java";
       default:
-        return "";
+        return "javascript";
     }
   };
 
@@ -86,49 +91,72 @@ function Codepair() {
   };
 
   return (
-    <div>
-      <h1>Code Editor</h1>
-      <input
-        type="text"
-        value={room}
-        onChange={(e) => setRoom(e.target.value)}
-        placeholder="Enter room ID"
-      />
-      <button onClick={joinRoom}>Join Room</button>
-      <ControlledEditor
-        value={code}
-        options={{
-          mode: getMode(language),
-          theme: getTheme(theme),
-          lineNumbers: true,
-        }}
-        onBeforeChange={handleCodeChange}
-      />
+    <>
+      {localStorage.getItem("token") ? (
+        <div>
+          <h1>Code Editor</h1>
+          <input
+            className="join-room" 
+            type="text"
+            value={room}
+            onChange={(e) => setRoom(e.target.value)}
+            placeholder="Enter room ID"
+          />
+          <button className="join-room" onClick={joinRoom}>
+            Join Room
+          </button>
 
-      <select onChange={(e) => setLanguage(e.target.value)} value={language}>
-        <option value="javascript">JavaScript</option>
-        <option value="python">Python</option>
-        <option value="cpp">CPP</option>
-        <option value="java">Java</option>{" "}
-      </select>
+          <select
+            onChange={(e) => setLanguage(e.target.value)}
+            value={language}
+          >
+            <option value="nodejs">JavaScript</option>
+            <option value="python3">Python</option>
+            <option value="cpp">CPP</option>
+            <option value="java">Java</option>{" "}
+          </select>
 
-      <select onChange={(e) => setTheme(e.target.value)} value={theme}>
-        <option value="material">material</option>
-        <option value="twilight">twilight</option>
-        <option value="dracula">dracula</option>
-        <option value="darcula">darcula</option>
-        <option value="one-dark">one-dark</option>
-        <option value="eclipse">eclipse</option>
-        <option value="yeti">yeti</option>
-        <option value="midnight">midnight</option>
-      </select>
+          <select onChange={(e) => setTheme(e.target.value)} value={theme}>
+            <option value="material">material</option>
+            <option value="twilight">twilight</option>
+            <option value="dracula">dracula</option>
+            <option value="darcula">darcula</option>
+            <option value="one-dark">one-dark</option>
+            <option value="eclipse">eclipse</option>
+            <option value="yeti">yeti</option>
+            <option value="midnight">midnight</option>
+          </select>
+          <ControlledEditor
+            value={code}
+            options={{
+              mode: getMode(language),
+              theme: getTheme(theme),
+              lineNumbers: true,
+            }}
+            onBeforeChange={handleCodeChange}
+          />
 
-      <button onClick={compileCode}>Compile</button>
-      <div>
-        <h2>Output:</h2>
-        <pre>{output}</pre>
-      </div>
-    </div>
+          <button className="compile-btn" onClick={compileCode}>
+            Compile
+          </button>
+          <div>
+            <h2>Output:</h2>
+            <pre>{output}</pre>
+          </div>
+        </div>
+      ) : (
+        <div
+          style={{
+            fontSize: "x-large",
+            marginTop: "2rem",
+            textAlign: "center",
+          }}
+        >
+          {" "}
+          Please <Link to="/login">Login</Link> first
+        </div>
+      )}
+    </>
   );
 }
 

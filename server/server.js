@@ -7,7 +7,7 @@ require("dotenv").config();
 const connectDB = require("./config/db");
 const app = express();
 const server = http.createServer(app);
-
+const axios = require("axios");
 connectDB();
 // Middleware
 app.use(express.json());
@@ -19,6 +19,7 @@ const io = new Server(server, {
     origin: "*",
   },
 });
+
 io.on("connection", (socket) => {
   socket.on("joinRoom", (room) => {
     socket.join(room);
@@ -43,7 +44,6 @@ const corsOptions = {
   origin: "*",
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
 };
-
 app.use(cors(corsOptions));
 
 // Routes
@@ -76,7 +76,8 @@ app.use(errorHandler);
 const doubtRouter = require("./routes/doubtRoutes");
 app.use("/doubts", doubtRouter);
 
-// app.use("/compile", require("./routes/compileRoutes"));
+const { compileCode } = require("./controllers/compileController");
+app.use("/compile", compileCode);
 
 // Server
 const PORT = process.env.PORT || 5000;

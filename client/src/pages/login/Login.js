@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -10,13 +11,17 @@ const Login = () => {
   const loginButton = useRef(null);
 
   const [loading, setLoading] = useState(false);
+  console.log("loading", loading);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/", { replace: true });
+    }
+  }, [navigate]);
+
   useEffect(() => {
     if (loginButton.current && emailInput.current && passwordInput.current) {
       loginButton.current.onclick = () => {
-        // if (passwordInput.current.value.length < 8) {
-        //   alert("Minimum length for password is 8");
-        //   return;
-        // }
         const jsonData = {
           email: emailInput.current.value,
           password: passwordInput.current.value,
@@ -33,9 +38,7 @@ const Login = () => {
           .then((res) => {
             if (!res.ok) {
               return res.json().then((data) => {
-                throw new Error(
-                  `HTTP error! Status: ${res.status}, Message: ${data.message}`
-                );
+                throw new Error("inavlid email or password, please try again!");
               });
             }
             return res.json();
@@ -54,7 +57,7 @@ const Login = () => {
           });
       };
     }
-  }, []);
+  });
   return (
     <div className="log-container">
       <div className="login-container">
@@ -85,8 +88,10 @@ const Login = () => {
               </label>
               <input
                 type="email"
+                name="email"
                 placeholder="email@website.com"
                 id="email"
+                required
                 ref={emailInput}
               />
             </div>
@@ -96,7 +101,7 @@ const Login = () => {
               </label>
               <input
                 autoComplete="off"
-                type="password" // Changed from text to password for security
+                type="password"
                 placeholder="Minimum 8 characters"
                 id="pwd"
                 ref={passwordInput}
@@ -108,26 +113,26 @@ const Login = () => {
                 <input
                   autoComplete="off"
                   type="checkbox"
-                  defaultChecked={true} // Changed from checked to defaultChecked for uncontrolled component
+                  defaultChecked={true}
                   id="remember"
                 />
                 <label htmlFor="remember">Remember me</label>
               </div>
-
-              <a href="#" className="link forgot-link">
-                Forgot Password ?
-              </a>
             </div>
 
-            <a href="#" className="rounded-button login-cta" ref={loginButton}>
+            <button
+              href="#"
+              className="rounded-button login-cta"
+              ref={loginButton}
+            >
               Login
-            </a>
+            </button>
 
             <div className="register-div">
               Not registered yet?{" "}
-              <a href="#" className="link create-account-link">
+              <Link to="/register" className="link create-account-link">
                 Create an account ?
-              </a>
+              </Link>
             </div>
           </div>
         </div>

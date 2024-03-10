@@ -1,28 +1,94 @@
-/* Codepair.module.css */
-.codepairContainer {
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  background-color: #fff;
-}
-
-.header {
+h1 {
+  color: #bd93f9;
   text-align: center;
+}
+
+/* Styling for the editor and output containers */
+.editor-container,
+.output-container {
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #44475a;
+}
+
+/* Room join section */
+.join-room {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
-.editorArea {
-  margin-bottom: 20px;
-}
-
-.outputArea {
-  background-color: #f5f5f5;
+.join-room input[type="text"] {
   padding: 10px;
+  border: none;
+  border-radius: 4px;
+  width: 300px;
+}
+
+.join-room button {
+  padding: 10px 20px;
+  background-color: #50fa7b;
+  color: #282a36;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.join-room button:hover {
+  background-color: #6272a4;
+}
+
+/* CodeMirror overrides for theme */
+.CodeMirror {
   border-radius: 4px;
 }
 
-.outputHeader {
-  margin-top: 0;
+/* Dropdowns for language and theme */
+select {
+  padding: 10px;
+  background-color: #6272a4;
+  color: #f8f8f2;
+  border: none;
+  margin: 0 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Compile button */
+.compile-btn {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background-color: #ff79c6;
+  color: #282a36;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.compile-btn:hover {
+  background-color: #ff6ad5;
+}
+
+/* Output styling */
+.output {
+  background-color: #282a36;
+  color: #50fa7b;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+/* Login link styling */
+.login-link {
+  color: #ff79c6;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-link:hover {
+  text-decoration: underline;
 }
