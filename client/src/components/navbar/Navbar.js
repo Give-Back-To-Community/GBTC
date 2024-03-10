@@ -31,8 +31,11 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/chat">
-            <div href="#about">Chat</div>
+          <Link
+            style={{ textDecoration: "none", border: "none", color: "black" }}
+            to="/chat"
+          >
+            <div id="chat_link">Chat</div>
           </Link>
         </li>
         <li>

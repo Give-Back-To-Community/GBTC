@@ -8,6 +8,13 @@ const ChildRecent = (props) => {
       to={`/feed/${props.url}`}
     >
       <div id="child_feed_recent">
+        <div id="child_feed_recent_imageContainer">
+          <img
+            id="child_feed_recent_image"
+            src={props.profilePictureUrl}
+            alt="DP"
+          />
+        </div>
         <div id="child_feed_recent_userName">{props.userName}</div>
         <div id="child_feed_recent_userCollege">{props.userCollege}</div>
         <div id="child_feed_recent_title">{props.title + "..."}</div>

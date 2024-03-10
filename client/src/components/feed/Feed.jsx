@@ -19,7 +19,7 @@ const Feed = () => {
   const nameValue = useRef(null);
 
   const [isBlogLoading, setIsBlogLoading] = useState(false);
-  // const [scrollY, setScrollY] = useEffect(2);
+  const [file, setFile] = useState();
   const [isUpdated, setIsUpdated] = useState();
   const [selectedUniversity, setSelectedUniversity] = useState(null);
   const [selectedLocation, setSelectedLocaton] = useState(null);
@@ -181,8 +181,11 @@ const Feed = () => {
   const handleChangeTechStackOfCreatingBlog = (selectedOptions) => {
     setTechStackOfCreatingBlog(selectedOptions);
   };
-  const submitBlogFormDetail = (e) => {
+  const submitBlogFormDetail = async (e) => {
     e.preventDefault();
+
+    const file = e.target.filesInput.files[0];
+    console.log(file, "file");
 
     const blogTitle = e.target.createBlogTitle.value;
     const blogDescription = e.target.createBlogDescription.value;
@@ -198,11 +201,43 @@ const Feed = () => {
     techStackOfCreatingBlog?.map((ele) => {
       techy.push(ele.label);
     });
-    console.log(techy, "techy");
+
+    let blogPictureUrl = "";
+    const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME;
+    const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET;
+    if (file) {
+      const uploadFormData = new FormData();
+      uploadFormData.append("file", file);
+      uploadFormData.append("upload_preset", UPLOAD_PRESET);
+
+      try {
+        const response = await fetch(
+          `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+          {
+            method: "POST",
+            body: uploadFormData,
+          }
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          blogPictureUrl = data.secure_url;
+          console.log("blog picture", blogPictureUrl);
+        } else {
+          console.error("Image upload failed");
+          return;
+        }
+      } catch (error) {
+        console.error("Error uploading image: ", error);
+        return;
+      }
+    }
+
     const jsonData = {
       title: blogTitle,
       description: blogDescription,
       techStackUsed: techy,
+      blogPictureUrl,
     };
     fetch("http://localhost:5000/api/blog/addBlog", {
       method: "POST",
@@ -217,6 +252,7 @@ const Feed = () => {
         // console.log("in client side response while adding blog", response);
         e.target.createBlogTitle.value = "";
         e.target.createBlogDescription.value = "";
+        e.target.filesInput.value = "";
         setTechStackOfCreatingBlog(null);
         setIsUpdated(response);
         console.log("isUpdated", isUpdated);
@@ -230,10 +266,10 @@ const Feed = () => {
       // createBlogReference.current.style.height = "0rem";
       createBlogButtonReference.current.onclick = () => {
         if (localStorage.getItem("token")) {
-          if (createBlogReference.current.style.height == "21rem") {
+          if (createBlogReference.current.style.height == "24rem") {
             createBlogReference.current.style.height = "0rem";
           } else {
-            createBlogReference.current.style.height = "21rem";
+            createBlogReference.current.style.height = "24rem";
           }
         } else {
           navigate("/login");
@@ -265,6 +301,7 @@ const Feed = () => {
                   name: comment.user.name,
                   college: comment.user.college,
                   content: comment.content,
+                  profilePictureUrl: comment.user.profilePictureUrl,
                 })
               );
             });
@@ -279,6 +316,8 @@ const Feed = () => {
               likes: data.likes ? data.likes.length : 0,
               comments: curComments,
               url: data.url,
+              blogPictureUrl: data.blogPictureUrl,
+              profilePictureUrl: val.user.profilePictureUrl,
             };
             curBlogsArr.push(tempData);
           });
@@ -292,6 +331,12 @@ const Feed = () => {
         console.log("Some error occurred while fetching the all blogs", err);
       });
   }, [isUpdated]);
+
+  const handleFileChange = (event) => {
+    console.log(event.target.files);
+    setFile(event.target.files[0]);
+  };
+
   return (
     <div id="feed_container">
       <div id="feed_container_left" ref={feedLeftSide}>
@@ -315,66 +360,6 @@ const Feed = () => {
             </div>
           )}
         </Select>
-
-        {/* //location */}
-        {/*
-        <div id="feed_container_location" class="feed_container_leftChild">
-          Select location
-        </div>
-        <Select
-          value={selectedLocation}
-          onChange={handleChangeLocation}
-          options={locationOptions}
-          className="feed_container_leftBoxChild"
-          isMulti={false} // Set to false to allow only one option to be selected
-        >
-          {selectedLocation && (
-            <div>
-              <h3>Selected Option:</h3>
-              <p>{selectedLocation.label}</p>
-            </div>
-          )}
-        </Select>
-        {/* //company 
-        <div id="feed_container_company" class="feed_container_leftChild">
-          Select company
-        </div>
-        <Select
-          value={selectedCompany}
-          onChange={handleChangeCompany}
-          options={companyOptions}
-          className="feed_container_leftBoxChild"
-          isMulti={false} // Set to false to allow only one option to be selected
-        >
-          {selectedCompany && (
-            <div>
-              <h3>Selected Option:</h3>
-              <p>{selectedCompany.label}</p>
-            </div>
-          )}
-        </Select>
-
-        {/* //role */
-        /*}
-        <div id="feed_container_role" class="feed_container_leftChild">
-          Select role
-        </div>
-        <Select
-          value={selectedRole}
-          className="feed_container_leftBoxChild"
-          onChange={handleChangeRole}
-          options={roleOptions}
-          isMulti={false} // Set to false to allow only one option to be selected
-        >
-          {selectedRole && (
-            <div>
-              <h3>Selected Option:</h3>
-              <p>{selectedRole.label}</p>
-            </div>
-          )}
-        </Select> 
-
-        {/* //title */}
 
         <div id="feed_container_title" class="feed_container_leftChild">
           Select title
@@ -485,6 +470,16 @@ const Feed = () => {
             options={techStackOptions}
             isMulti
           />
+          <div id="feed_container_middle_blogDetails_chooseImageHeading">
+            Choose image
+          </div>
+          <input
+            id="feed_container_middle_blogDetails_chooseImageInput"
+            type="file"
+            onChange={handleFileChange}
+            name="filesInput"
+            accept="image/*"
+          ></input>
           <button type="submit" id="addBlogButton">
             Add Blog
           </button>
@@ -507,6 +502,8 @@ const Feed = () => {
                     comments={ele.comments}
                     likes={ele.likes}
                     url={ele.url}
+                    blogPictureUrl={ele.blogPictureUrl}
+                    profilePictureUrl={ele.profilePictureUrl}
                   />
                 );
               })}

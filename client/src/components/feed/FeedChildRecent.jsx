@@ -23,6 +23,7 @@ const FeedChildRecent = () => {
             url: ele.url,
             userName: ele.user.name,
             userUniversity: ele.user.college,
+            profilePictureUrl: ele.user.profilePictureUrl,
           };
           recBlog.push(tempData);
 
@@ -53,6 +54,7 @@ const FeedChildRecent = () => {
                   url={val.url}
                   userName={val.userName.toUpperCase()}
                   userCollege={val.userUniversity}
+                  profilePictureUrl={val.profilePictureUrl}
                 />
               );
             })

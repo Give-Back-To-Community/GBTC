@@ -11,6 +11,7 @@ const ChildFeed = (props) => {
   const openSingleBlog = useRef(null);
   const [isLoadingComment, setIsLoadingComment] = useState(false);
   useEffect(() => {
+    console.log("picture url", props.blogPictureUrl);
     setAllComments([]);
     setIsLoadingComment(false);
     const realComment = props.comments.map((str) =>
@@ -75,6 +76,7 @@ const ChildFeed = (props) => {
               content: response.newComment.content,
               name: response.newComment.name,
               college: response.newComment.college,
+              profilePictureUrl: response.newComment.profilePictureUrl,
             },
           ];
         });
@@ -99,15 +101,30 @@ const ChildFeed = (props) => {
           open_in_new
         </span>
       </div>
+      <div id="single_blog_container_profilePicture">
+        <img
+          id="single_blog_container_profilePictureReal"
+          src={props.profilePictureUrl}
+          alt="profilePicture"
+        />
+      </div>
       <div id="single_blog_container_authorName">
         {props.name.toUpperCase()}
       </div>
       <div id="single_blog_container_authorCollege">{props.college}</div>
       <div id="single_blog_container_title"> {props.title}</div>
       <div id="single_blog_container_description">{props.description}</div>
-      <div id="single_blog_container_imageContainer">
-        <img id="single_blog_container_image" src="d36d1c7d.webp"></img>
-      </div>
+      {props.blogPictureUrl ? (
+        <div id="single_blog_container_imageContainer">
+          <img
+            id="single_blog_container_image"
+            src={props.blogPictureUrl}
+            alt="blogImage"
+          ></img>
+        </div>
+      ) : (
+        ""
+      )}
       <div id="single_blog_container_techStack">
         <div id="single_blog_container_techStack_title">Tech Stack Used</div>
         <div id="single_blog_container_techStack_stack">
@@ -164,6 +181,12 @@ const ChildFeed = (props) => {
                     key={uuidv4()}
                     id="single_blog_container_comments_description_showComment_container"
                   >
+                    <div id="single_blog_container_comments_description_showComment_container_imageContainer">
+                      <img
+                        id="single_blog_container_comments_description_showComment_container_image"
+                        src={comment.profilePictureUrl}
+                      />
+                    </div>
                     <div id="single_blog_container_comments_description_showComment_container_name">
                       {comment.name?.toUpperCase()}
                     </div>

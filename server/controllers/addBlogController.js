@@ -3,7 +3,7 @@ const BlogRecord = require("../models/BlogRecordModel");
 const User = require("../models/UserModel");
 const shortId = require("shortid");
 const addBlog = async (req, res) => {
-  const { title, description, techStackUsed } = req.body;
+  const { title, description, techStackUsed, blogPictureUrl } = req.body;
   const _id = req.user._id;
   // console.log(_id);
   const user = await User.findOne({ _id });
@@ -19,6 +19,7 @@ const addBlog = async (req, res) => {
     description,
     techStackUsed,
     url,
+    blogPictureUrl,
   });
 
   if (!blog) {
@@ -62,6 +63,7 @@ const addBlog = async (req, res) => {
     res.status(200).json({
       message: "successfully added blog and record bw user and blog",
       curRecord,
+      blogPictureUrl,
     });
   }
 };
