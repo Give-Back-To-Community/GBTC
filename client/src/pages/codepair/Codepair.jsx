@@ -33,13 +33,17 @@ function Codepair() {
 
   const compileCode = () => {
     setOutput("compiling");
-    console.log("HIT");
-    console.log(code, language);
+    // console.log("HIT");
+    if (!code) {
+      setOutput("No code provided");
+      return;
+    }
+    // console.log(code, language);
     axios
       .post("/compile", { code, language })
       .then((response) => {
         const output = response.data.output;
-        console.log("Output:", output);
+        // console.log("Output:", output);
         setOutput(output);
       })
       .catch((error) => {
@@ -49,7 +53,7 @@ function Codepair() {
 
   const joinRoom = () => {
     socket.emit("joinRoom", room);
-    console.log(`Joined room ${room}`);
+    // console.log(`Joined room ${room}`);
   };
 
   const getMode = (language) => {
@@ -96,7 +100,7 @@ function Codepair() {
         <div>
           <h1>Code Editor</h1>
           <input
-            className="join-room" 
+            className="join-room"
             type="text"
             value={room}
             onChange={(e) => setRoom(e.target.value)}

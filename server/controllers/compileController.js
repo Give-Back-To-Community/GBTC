@@ -5,7 +5,7 @@ exports.compileCode = async (req, res) => {
   let { code } = req.body;
   let { language } = req.body;
   if (!code) {
-    return res.status(400).send("No code provided");
+    return res.status(400).json("No code provided");
   }
 
   if (language === "javascript") {
