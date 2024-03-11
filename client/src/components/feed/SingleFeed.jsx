@@ -67,6 +67,7 @@ const SingleFeed = () => {
               content: comment.content,
               name: comment.user.name,
               college: comment.user.college,
+              profilePictureUrl: comment.user.profilePictureUrl,
             });
           });
         setBlogComments(commentArr);
@@ -77,6 +78,8 @@ const SingleFeed = () => {
           description: response.description,
           likes: response.likes ? response.likes.length : 0,
           techStackUsed: response.techStackUsed,
+          blogPictureUrl: response.blogPictureUrl,
+
           //   comments: commentArr,
         };
 
@@ -200,6 +203,7 @@ const SingleFeed = () => {
               content: response.newComment.content,
               name: response.newComment.name,
               college: response.newComment.college,
+              profilePictureUrl: response.profilePictureUrl,
             },
           ];
         });
@@ -221,6 +225,13 @@ const SingleFeed = () => {
               <>
                 {" "}
                 <div id="single_feed_container_left_userDetails">
+                  <div id="single_feed_container_left_userDetails_imageContainer">
+                    <img
+                      id="single_feed_container_left_userDetails_image"
+                      alt="DP"
+                      src={curBlogAuthorDetails.profilePictureUrl}
+                    />
+                  </div>
                   <div id="single_feed_container_left_userDetails_name">
                     {curBlogAuthorDetails
                       ? curBlogAuthorDetails?.name?.toUpperCase()
@@ -244,7 +255,7 @@ const SingleFeed = () => {
             <div id="single_feed_container_left_image">
               <img
                 id="single_feed_container_left_imageReal"
-                src="/d36d1c7d.webp"
+                src={blogData.blogPictureUrl}
                 alt="blogImage"
               ></img>
             </div>
@@ -357,6 +368,13 @@ const SingleFeed = () => {
                       key={uuidv4()}
                       id="single_feed_container_second_commentContainer"
                     >
+                      <div id="single_feed_container_second_commentContainer_imageContainer">
+                        <img
+                          id="single_feed_container_second_commentContainer_image"
+                          src={ele.profilePictureUrl}
+                          alt="DP"
+                        />
+                      </div>
                       <div id="single_feed_container_second_commentContainer_name">
                         {ele.name && ele.name.toUpperCase()}
                       </div>
@@ -376,7 +394,7 @@ const SingleFeed = () => {
           </>
         ) : (
           <div id="noLoginLeftPart">
-            <Link to="/login">Login</Link> to see the blog
+            <Link to="/login">Login</Link> to see the comment
           </div>
         )}
       </div>

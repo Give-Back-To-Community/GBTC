@@ -35,6 +35,9 @@ const BlogModel = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "BlogRecord",
     },
+    blogPictureUrl: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

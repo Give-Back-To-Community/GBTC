@@ -11,6 +11,25 @@
   padding: 8px;
   background-color: white;
 }
+#single_feed_container_left_userDetails_imageContainer {
+  width: 2rem;
+  margin-top: 10px;
+  border-radius: 50%;
+  margin-left: 1px;
+  border: 2px solid;
+}
+#single_feed_container_left_userDetails_image {
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+}
+#single_feed_container_left_userDetails_name {
+  margin-left: 3rem;
+  margin-top: -40px;
+}
+#single_feed_container_left_userDetails__college {
+  margin-left: 3rem;
+}
 #single_feed_container_left_title {
   font-size: larger;
   font-family: sans-serif;
@@ -76,7 +95,7 @@
   border-radius: 5px;
   background-color: white;
   border: 1px solid;
-  height: 29.5rem;
+  height: 33.5rem;
   overflow-y: scroll;
   width: 25%;
 }
@@ -90,7 +109,7 @@
   border: 1px solid;
   border-radius: 5px;
   background-color: white;
-  height: 29.5rem;
+  height: 33.5rem;
   width: 25%;
 }
 #single_feed_container_second {
@@ -104,17 +123,33 @@
 }
 #single_feed_container_second_commentContainer {
   margin-left: 1rem;
+  margin-top: 1rem;
+}
+#single_feed_container_second_commentContainer_imageContainer {
+  width: 1rem;
+  margin-top: 10px;
+  border-radius: 50%;
+  margin-left: 1px;
+  border: 2px solid;
+}
+#single_feed_container_second_commentContainer_image {
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
 }
 #single_feed_container_second_commentContainer_name {
-  margin-top: 1rem;
+  margin-left: 28px;
+  margin-top: -30px;
 }
 #single_feed_container_second_commentContainer_college {
   font-size: small;
+  margin-left: 30px;
 }
 #single_feed_container_second_commentContainer_content {
   border-bottom: 1px solid #a3a3a3;
   word-wrap: break-word;
   padding-bottom: 7px;
+  margin-top: 8px;
 }
 #single_feed_container_second_form {
   margin-left: 1rem;

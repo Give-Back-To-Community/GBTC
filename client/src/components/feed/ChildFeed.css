@@ -17,14 +17,26 @@
   background-color: #c5c4c4;
   border-radius: 50%;
 }
+#single_blog_container_profilePicture {
+  width: 2rem;
+  margin-top: -2rem;
+  border-radius: 50%;
+  margin-left: 15px;
+  border: 2px solid;
+}
+#single_blog_container_profilePictureReal {
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+}
 #single_blog_container_authorName {
   font-size: larger;
-  padding-left: 15px;
-  margin-top: -3rem;
+  padding-left: 61px;
+  margin-top: -42px;
 }
 #single_blog_container_authorCollege {
   font-size: small;
-  padding-left: 15px;
+  padding-left: 61px;
 }
 #single_blog_container_title {
   font-size: larger;
@@ -45,7 +57,7 @@
 }
 
 #single_blog_container_techStack {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 #single_blog_container_techStack_stack {
   display: flex;
@@ -61,7 +73,7 @@
   border-radius: 3px;
 }
 #single_blog_container_techStack_title {
-  font-size: large;
+  /* font-size: large; */
   padding-left: 15px;
 }
 #single_blog_container_likes {
@@ -95,6 +107,18 @@
   width: 467px;
   height: 29px;
 }
+#single_blog_container_comments_description_showComment_container_imageContainer {
+  width: 1rem;
+  margin-top: 10px;
+  border-radius: 50%;
+  margin-left: 1px;
+  border: 2px solid;
+}
+#single_blog_container_comments_description_showComment_container_image {
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+}
 #single_blog_container_comments_description_postComment_title {
   border-radius: 6px;
   text-align: center;
@@ -116,15 +140,21 @@
   margin-bottom: 10px;
   width: 46vw;
 }
+#single_blog_container_comments_description_showComment_container {
+  border-bottom: 1px solid #a3a3a3;
+}
 #single_blog_container_comments_description_showComment_container:hover {
   background-color: lightgray;
 }
 #single_blog_container_comments_description_showComment_container_name {
-  margin-top: 1rem;
+  margin-top: -2rem;
+  margin-left: 33px;
 }
 #single_blog_container_comments_description_showComment_container_college {
   font-size: small;
+  margin-left: 33px;
 }
 #single_blog_container_comments_description_showComment_container_content {
-  margin-top: 4px;
+  margin-top: 6px;
+  padding-bottom: 8px;
 }
