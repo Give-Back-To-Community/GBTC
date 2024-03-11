@@ -33,9 +33,9 @@ const Navbar = () => {
         <li>
           <Link
             style={{ textDecoration: "none", border: "none", color: "black" }}
-            to="/chat"
+            to="/doubt"
           >
-            <div id="chat_link">Chat</div>
+            <div id="doubt_link">Doubt</div>
           </Link>
         </li>
         <li>
