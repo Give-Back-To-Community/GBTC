@@ -10,6 +10,7 @@ import Livestreams from "./pages/livestreams/Livestreams";
 import SingleFeed from "./components/feed/SingleFeed";
 import Codepair from "./pages/codepair/Codepair";
 import Doubt from "./components/doubt/Doubt";
+import SingleDoubt from "./components/doubt/SingleDoubt";
 // import ImageSlider from "./pages/home/ImageSlider";
 // import Community from "./pages/home/Community";
 export default function App() {
@@ -26,6 +27,8 @@ export default function App() {
           <Route path="/livestreams/room/:roomID" element={<Livestreams />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/feed/:url" element={<SingleFeed />} />
+          <Route path="/doubt/:url" element={<SingleDoubt />} />
+
           <Route path="/doubt" element={<Doubt />} />
           <Route path="/codepair" element={<Codepair />} />
         </Routes>

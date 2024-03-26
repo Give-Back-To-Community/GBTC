@@ -74,10 +74,10 @@ app.use("/api/extra", extraRoutes);
 app.use(errorHandler);
 
 const doubtRouter = require("./routes/doubtRoutes");
-app.use("/doubts", doubtRouter);
+app.use("/api/doubts", doubtRouter);
 
 const { compileCode } = require("./controllers/compileController");
-app.use("/compile", compileCode);
+app.use("/api/compile", compileCode);
 
 // Server
 const PORT = process.env.PORT || 5000;
