@@ -62,16 +62,18 @@
   padding-bottom: 7px;
 }
 #searchButton {
-  border-radius: 5px;
+  /* border-radius: 5px; */
   padding: 8px;
-  border: 1px solid;
+  /* border: 1px solid; */
+  cursor: pointer;
   width: 7rem;
 }
 #resetButton {
-  border-radius: 5px;
+  /* border-radius: 5px; */
   padding: 8px;
-  border: 1px solid;
+  /* border: 1px solid; */
   width: 7rem;
+  cursor: pointer;
   margin-left: 1rem;
 }
 #feed_container_middle {

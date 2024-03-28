@@ -33,6 +33,10 @@ const DoubtSchema = new mongoose.Schema(
     doubtPictureUrl: {
       type: String,
     },
+    url: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

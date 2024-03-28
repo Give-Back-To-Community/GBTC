@@ -1,0 +1,58 @@
+#doubt_child_container {
+  margin-top: 1rem;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0px 0px 6px 0px #c5c4c4;
+  border-radius: 10px;
+}
+#doubt_child_container_profilePictureUrl {
+  border-radius: 47%;
+  border: 1px solid;
+}
+#doubt_child_container_profilePictureUrl_image {
+  height: 42px;
+  width: 51px;
+  border-radius: 50%;
+}
+#doubt_child_container_userInfo {
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: 18px; */
+}
+#doubt_child_container_userInfo_first {
+  display: flex;
+  gap: 18px;
+  width: 36vw;
+}
+
+#doubt_child_container_details {
+  display: flex;
+  flex-wrap: wrap;
+}
+#doubt_child_container_name {
+  width: 100%;
+}
+#doubt_child_container_openInNew {
+  margin-left: 6vw;
+  cursor: pointer;
+  padding: 10px;
+}
+#doubt_child_container_openInNew:hover {
+  background-color: #c5c4c4;
+  border-radius: 50%;
+}
+#doubt_child_container_title {
+  margin-top: 1rem;
+  font-weight: 500;
+  font-family: sans-serif;
+}
+#doubt_child_container_content {
+  margin-top: 6px;
+}
+#doubt_child_container_doubtPictureUrl_image {
+  height: 100%;
+  width: 100%;
+}
+#doubt_child_container_doubtPictureUrl {
+  margin-top: 2rem;
+}

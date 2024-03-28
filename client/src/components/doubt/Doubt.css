@@ -8,12 +8,12 @@
   height: 19rem;
   margin-top: 1rem;
 }
-#doubts_container_left_addBlogTitle {
+#doubts_container_left_addDoubtTitle {
   border-radius: 10px;
   display: flex;
   padding-left: 1rem;
 }
-#doubts_container_left_addBlogTitle_circle {
+#doubts_container_left_addDoubtTitle_circle {
   height: 3rem;
   width: 3rem;
 
@@ -21,14 +21,14 @@
   border-radius: 50%;
   background-color: #4e6ef2;
 }
-#doubts_container_left_addBlogTitle_circleIcon {
+#doubts_container_left_addDoubtTitle_circleIcon {
   font-size: 44px;
   margin-left: 1px;
   cursor: pointer;
   margin-top: 1px;
   color: white;
 }
-#doubts_container_left_addBlogTitle_content {
+#doubts_container_left_addDoubtTitle_content {
   width: 284px;
   font-size: large;
   padding-top: 10px;
@@ -40,7 +40,7 @@
   background-color: white;
   margin-top: 0px;
 }
-#doubts_container_left_addBlogContainer {
+#doubts_container_left_addDoubtContainer {
   background-color: white;
   padding-top: 0.1px;
   margin-top: 1rem;
@@ -48,33 +48,33 @@
   padding-left: 1rem;
   border-radius: 10px;
 }
-#doubts_container_left_addBlogContainer_title {
+#doubts_container_left_addDoubtContainer_title {
   margin-top: 1rem;
 }
-#doubts_container_left_addBlogContainer_inputTitle {
+#doubts_container_left_addDoubtContainer_inputTitle {
   margin-top: 6px;
   width: 87%;
   height: 24px;
 }
-#doubts_container_left_addBlogContainer_content {
+#doubts_container_left_addDoubtContainer_content {
   margin-top: 1rem;
 }
-#doubts_container_left_addBlogContainer_inputContent {
+#doubts_container_left_addDoubtContainer_inputContent {
   margin-top: 6px;
   width: 87%;
   height: 24px;
 }
-#doubts_container_left_addBlogContainer_image {
+#doubts_container_left_addDoubtContainer_image {
   margin-top: 1rem;
 }
-#doubts_container_left_addBlogContainer_inputPicture {
+#doubts_container_left_addDoubtContainer_inputPicture {
   margin-top: 6px;
 }
-#doubts_container_left_addBlogContainerSubmit {
+#doubts_container_left_addDoubtContainerSubmit {
   color: white;
   border-radius: 10px;
   padding: 11px;
-  margin-top: 2rem;
+  margin-top: 1rem;
   border: none;
   cursor: pointer;
   background-color: #4e6ef2;
@@ -82,7 +82,9 @@
   width: 11rem;
   margin-left: 2rem;
 }
-
+#doubts_container_left_addDoubtContainerSubmit:hover {
+  background-color: #1937be;
+}
 #doubts_container_middle {
   width: 50%;
   padding-left: 8px;
@@ -103,10 +105,12 @@
   background-color: #4e6ef2;
 }
 #doubts_container_middle_filterContainer_box {
-  /* overflow-y: scroll; */
+  overflow: hidden;
   background-color: white;
   padding-top: 0.1px;
   margin-top: 0rem;
+  transition: height 1s;
+  height: 0rem;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -158,8 +162,8 @@
 }
 
 #doubts_container_middle_allDoubtsContainer {
-  background-color: white;
-  height: 20rem;
+  /* background-color: white; */
+  /* height: 20rem; */
   margin-top: 1rem;
   border-radius: 10px;
 }
@@ -180,4 +184,48 @@
   font-size: large;
   margin-top: 10px;
   border-bottom: 1px solid;
+}
+#doubts_container_right_doubtContainer {
+  display: flex;
+  padding-top: 0.1px;
+  justify-content: center;
+  flex-wrap: wrap;
+  cursor: pointer;
+}
+
+#loadingPostDoubt {
+  height: 1rem;
+  text-align: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+#noTokenPostDoubt {
+  background-color: white;
+  font-family: sans-serif;
+  padding-top: 0.1px;
+  text-align: center;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  padding-left: 1rem;
+  border-radius: 10px;
+  height: 3rem;
+  font-size: 17px;
+}
+.shimmerUi_doubtChildClass {
+  height: 10rem;
+  margin-top: 1rem;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0px 0px 6px 0px #c5c4c4;
+  border-radius: 10px;
+}
+.shimmerUi_myDoubt_child {
+  background-color: #f2f2f2;
+  margin-top: 2rem;
+  border-radius: 4px;
+  width: 89%;
+  margin-left: 10px;
+  padding: 8px;
+  height: 4rem;
 }

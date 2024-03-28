@@ -67,6 +67,9 @@ const Register = () => {
         console.error("Error uploading image: ", error);
         return;
       }
+    } else {
+      profilePictureUrl =
+        "https://res.cloudinary.com/dpmvh9xgm/image/upload/v1711451092/x9ioplsucbh60q3idhd3.png";
     }
 
     const completeFormData = {

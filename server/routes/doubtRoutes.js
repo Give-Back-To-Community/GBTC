@@ -8,12 +8,14 @@ const viewAllDoubtsController = require("../controllers/viewAllDoubtsController"
 const viewMyDoubtsController = require("../controllers/viewMyDoubtsController");
 const updateDoubtController = require("../controllers/updateDoubtController");
 const deleteDoubtController = require("../controllers/deleteDoubtController");
+const fetchSingleDoubtController = require("../controllers/fetchSingleDoubtController");
 
-router.get("/doubts/all", auth, viewAllDoubtsController);
-router.get("/doubts/my", auth, viewMyDoubtsController);
-router.post("/doubts", auth, postDoubtController);
-router.post("/doubts/:doubtId/answer", auth, answerDoubtController);
-router.put("/doubts/:doubtId", auth, updateDoubtController);
-router.delete("/doubts/:doubtId", auth, deleteDoubtController);
+router.get("/view/all", viewAllDoubtsController);
+router.get("/view/my", auth, viewMyDoubtsController);
+router.get("/singleDoubt/:url", auth, fetchSingleDoubtController);
+router.post("/add", auth, postDoubtController);
+router.post("/:url/answer", auth, answerDoubtController);
+router.put("/:doubtId", auth, updateDoubtController);
+router.delete("/:doubtId", auth, deleteDoubtController);
 
 module.exports = router;
