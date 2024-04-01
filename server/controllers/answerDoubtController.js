@@ -6,6 +6,7 @@ const answerDoubtController = async (req, res) => {
   if (!doubt) return res.status(404).json({ message: "Doubt not found" });
 
   doubt.answers.push({ user: req.user.id, content });
+  doubt.resolved = true;
   await doubt.save();
   Doubt.findOne({ url: req.params.url })
     .populate({

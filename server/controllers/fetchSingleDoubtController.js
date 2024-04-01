@@ -2,13 +2,11 @@ const Doubt = require("../models/DoubtsModel");
 
 const fetchSingleDoubtController = async (req, res) => {
   const { url } = req.params;
-  console.log(url);
   const userId = req.user._id;
   if (!url) {
     res.status(404).json({ message: "No url found" });
     return;
   }
-  console.log("Enter");
   Doubt.findOne({ url })
     .populate({
       path: "answers",

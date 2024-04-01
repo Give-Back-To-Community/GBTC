@@ -16,7 +16,9 @@ const DoubtChild = (props) => {
             />
           </div>
           <div id="doubt_child_container_details">
-            <div id="doubt_child_container_name">{props.name}</div>
+            <div id="doubt_child_container_name">
+              {props.name.toUpperCase()}
+            </div>
             <div id="doubt_child_container_college">{props.college}</div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 const Doubt = require("../models/DoubtsModel");
 
-module.exports = async (req, res) => {
+const deleteDoubtController = async (req, res) => {
   try {
     const deletedDoubt = await Doubt.findByIdAndDelete(req.params.doubtId);
     if (!deletedDoubt)
@@ -10,3 +10,5 @@ module.exports = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+module.exports = deleteDoubtController;
