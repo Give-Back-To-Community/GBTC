@@ -9,13 +9,23 @@ const Doubt = () => {
   const filterTitle = useRef(null);
   const filterBox = useRef(null);
   const [selectedUniversity, setSelectedUniversity] = useState(null);
+  const [selectedResolved, setSelectedResolved] = useState(null);
+  const [globalDoubtArr, setGlobalDoubtArr] = useState([]);
   const [allDoubtArr, setAllDoubtArr] = useState([]);
   const [myDoubtArr, setMyDoubtArr] = useState([]);
   const [isLoadingPostDoubtButton, setIsLoadingPostDoubtButton] =
     useState(false);
+  const filterTitleInput = useRef(null);
+  const filterContentInput = useRef(null);
+  const submitFilter = useRef(null);
+  const resetFilter = useRef(null);
 
   const handleChangeUniversity = (selectedOptions) => {
     setSelectedUniversity(selectedOptions);
+    // console.log(selectedOptions); // Log the selected options array
+  };
+  const handleChangeResolved = (selectedOptions) => {
+    setSelectedResolved(selectedOptions);
     // console.log(selectedOptions); // Log the selected options array
   };
   const univOptions = [
@@ -25,6 +35,68 @@ const Doubt = () => {
     { value: "caltech", label: "California Institute of Technology" },
     { value: "oxford", label: "University of Oxford" },
   ];
+  const resolveOptions = [
+    { value: 0, label: "Yes , resolved doubt" },
+    { value: 1, label: "No , no answers available" },
+  ];
+
+  //filter button clicked
+  //filter button clicked
+  //filter button clicked  //filter button clicked
+  //filter button clicked
+  //filter button clicked
+  //filter button clicked
+  //filter button clicked
+
+  useEffect(() => {
+    if (
+      submitFilter.current &&
+      filterTitleInput.current &&
+      filterContentInput.current &&
+      resetFilter.current
+    ) {
+      submitFilter.current.onclick = () => {
+        console.log(globalDoubtArr);
+
+        const newFilteredData = globalDoubtArr.filter((doubt) => {
+          const titleMatch =
+            filterTitleInput.current.value == "" ||
+            doubt.title
+              .toLowerCase()
+              .includes(filterTitleInput.current.value?.toLowerCase());
+          const contentMatch =
+            filterContentInput.current.value == "" ||
+            doubt.content
+              .toLowerCase()
+              .includes(filterContentInput.current.value?.toLowerCase());
+
+          const universityMatch =
+            !selectedUniversity ||
+            doubt.college
+              .toLowerCase()
+              .includes(selectedUniversity.label.toLowerCase());
+          const resolvedMatch =
+            !selectedResolved ||
+            (selectedResolved.value == 0 && doubt.resolved) ||
+            (selectedResolved.value == 1 && !doubt.resolved);
+
+          return titleMatch && contentMatch && universityMatch && resolvedMatch;
+        });
+        setAllDoubtArr(newFilteredData);
+      };
+
+      resetFilter.current.onclick = () => {
+        filterTitleInput.current.value = "";
+        filterContentInput.current.value = "";
+        setSelectedUniversity(null);
+        setSelectedResolved(null);
+        setAllDoubtArr(globalDoubtArr);
+      };
+    }
+  });
+
+  const clickedFilter = () => {};
+
   // for filter animation
   // for filter animation
   // for filter animation
@@ -68,6 +140,7 @@ const Doubt = () => {
           });
         });
         setAllDoubtArr(curArr);
+        setGlobalDoubtArr(curArr);
         // console.log(allDoubtArr);
       })
       .catch((err) => {
@@ -280,7 +353,7 @@ const Doubt = () => {
               {/* Sort By */}
               <div id="doubts_container_middle_filterContainer_boxFlex_SORTBY">
                 <div id="doubts_container_middle_filterContainer_box_sortBy">
-                  Sort By
+                  Select University
                 </div>
                 <Select
                   value={selectedUniversity}
@@ -297,9 +370,9 @@ const Doubt = () => {
                   Resolved
                 </div>
                 <Select
-                  value={selectedUniversity}
-                  onChange={handleChangeUniversity}
-                  options={univOptions}
+                  value={selectedResolved}
+                  onChange={handleChangeResolved}
+                  options={resolveOptions}
                   isMulti={false} // Set to false to allow only one option to be selected
                   className="doubts_container_middle_filterContainer_box_resolvedSelect"
                 ></Select>
@@ -314,6 +387,7 @@ const Doubt = () => {
                   type="text"
                   id="doubts_container_middle_filterContainer_box_titleInput"
                   name="titleFilterInput"
+                  ref={filterTitleInput}
                 />
               </div>
               {/* content */}
@@ -326,13 +400,14 @@ const Doubt = () => {
                   type="text"
                   id="doubts_container_middle_filterContainer_box_contentInput"
                   name="conventFilterInput"
+                  ref={filterContentInput}
                 />
               </div>
             </div>
-            <button id="submitFilter" type="submit">
+            <button id="submitFilter" type="submit" ref={submitFilter}>
               Search
             </button>
-            <button id="resetFilter" type="reset">
+            <button id="resetFilter" type="reset" ref={resetFilter}>
               Reset
             </button>
           </div>

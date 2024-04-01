@@ -57,7 +57,7 @@ const Navbar = () => {
         {localStorage.getItem("token") != null ? (
           <>
             <li style={{ marginTop: "20px", marginRight: "12px" }}>
-              {localStorage.getItem("name").toUpperCase()}
+              {localStorage.getItem("name")?.toUpperCase()}
             </li>
             <li className="navbar-login" ref={logOut}>
               Log out

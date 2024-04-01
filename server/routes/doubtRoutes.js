@@ -9,13 +9,14 @@ const viewMyDoubtsController = require("../controllers/viewMyDoubtsController");
 const updateDoubtController = require("../controllers/updateDoubtController");
 const deleteDoubtController = require("../controllers/deleteDoubtController");
 const fetchSingleDoubtController = require("../controllers/fetchSingleDoubtController");
-
+const canDeleteController = require("../controllers/canDeleteController");
 router.get("/view/all", viewAllDoubtsController);
 router.get("/view/my", auth, viewMyDoubtsController);
 router.get("/singleDoubt/:url", auth, fetchSingleDoubtController);
 router.post("/add", auth, postDoubtController);
 router.post("/:url/answer", auth, answerDoubtController);
 router.put("/:doubtId", auth, updateDoubtController);
+router.post("/canDelete", auth, canDeleteController);
 router.delete("/:doubtId", auth, deleteDoubtController);
 
 module.exports = router;
