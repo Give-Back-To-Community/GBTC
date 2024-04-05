@@ -12,7 +12,7 @@ connectDB();
 
 // CORS Middleware Configuration
 const corsOptions = {
-  origin: "*",
+  origin: "https://gbtc-hazel.vercel.app",
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
 };
 app.use(cors(corsOptions));
@@ -23,7 +23,7 @@ app.use(express.json());
 // Socket.IO Configuration with CORS
 const io = new Server(server, {
   cors: {
-    origin: "*", // Match the origins allowed by Express CORS configuration
+    origin: "https://gbtc-hazel.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
   },
 });
