@@ -19,9 +19,11 @@ app.use(
 );
 
 //Socket
+
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: "https://gbtc-hazel.vercel.app/",
+    methods: ["GET", "POST", "PUT", "DELETE"],
   },
 });
 
