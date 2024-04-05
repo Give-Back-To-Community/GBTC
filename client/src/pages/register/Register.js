@@ -78,11 +78,14 @@ const Register = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(completeFormData),
-      });
+      const response = await fetch(
+        "https://gbtc-hd4r.onrender.com/api/auth/signup",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(completeFormData),
+        }
+      );
 
       console.log(response);
 
