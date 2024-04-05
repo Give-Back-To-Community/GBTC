@@ -171,7 +171,7 @@ const Doubt = () => {
       .then((res) => res.json())
       .then((response) => {
         const arr = [];
-        response.myDoubt.map((ele) => {
+        response?.myDoubt?.map((ele) => {
           arr.push({
             title: ele.title,
             content: ele.content,

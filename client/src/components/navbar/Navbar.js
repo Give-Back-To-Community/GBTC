@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <header class="navbar">
       <Link to="/">
-        <img src="GBTC-logo.png" alt="logo" className="gbtc-logo" />
+        <img src="/GBTC-logo.png" alt="logo" className="gbtc-logo" />
       </Link>
       <input class="menu-btn" type="checkbox" id="menu-btn" />
       <label class="menu-icon" for="menu-btn">
