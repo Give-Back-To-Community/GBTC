@@ -9,8 +9,8 @@ import "codemirror/mode/clike/clike";
 import "codemirror/mode/python/python";
 import "./Codepair.css";
 import { Link } from "react-router-dom";
-const socket = io.connect("http://localhost:5000");
-axios.defaults.baseURL = "http://localhost:5000";
+const socket = io.connect("https://gbtc-hd4r.onrender.com/");
+axios.defaults.baseURL = "https://gbtc-hd4r.onrender.com/api";
 function Codepair() {
   const [code, setCode] = useState("");
   const [output, setOutput] = useState("");
