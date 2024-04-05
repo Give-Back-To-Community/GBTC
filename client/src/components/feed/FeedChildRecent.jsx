@@ -11,7 +11,7 @@ const FeedChildRecent = () => {
     // console.log("coming in recent feed");
     setIsLoaded(true);
     //recent blogs fetch call
-    fetch("http://localhost:5000/api/extra/recentBlogs")
+    fetch("https://gbtc-hd4r.onrender.com/api/extra/recentBlogs")
       .then((res) => res.json())
       .then((response) => {
         const recBlog = [];

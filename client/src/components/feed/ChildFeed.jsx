@@ -48,7 +48,7 @@ const ChildFeed = (props) => {
 
     const content = e.target.commentTextArea.value;
     setIsLoadingComment(true);
-    fetch("http://localhost:5000/api/comment/addComment", {
+    fetch("https://gbtc-hd4r.onrender.com/api/comment/addComment", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

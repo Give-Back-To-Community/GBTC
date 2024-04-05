@@ -239,7 +239,7 @@ const Feed = () => {
       techStackUsed: techy,
       blogPictureUrl,
     };
-    fetch("http://localhost:5000/api/blog/addBlog", {
+    fetch("https://gbtc-hd4r.onrender.com/api/blog/addBlog", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -282,7 +282,7 @@ const Feed = () => {
     setIsBlogLoading(true);
     console.log("inside all blog fetching");
     //all blogs fetch call
-    fetch("http://localhost:5000/api/blog/viewBlog/allBlogs", {
+    fetch("https://gbtc-hd4r.onrender.com/api/blog/viewBlog/allBlogs", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

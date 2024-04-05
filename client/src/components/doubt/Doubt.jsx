@@ -122,7 +122,7 @@ const Doubt = () => {
   // fetching all doubts
 
   const fetchAllDoubt = () => {
-    fetch("http://localhost:5000/api/doubts/view/all")
+    fetch("https://gbtc-hd4r.onrender.com/api/doubts/view/all")
       .then((res) => res.json())
       .then((response) => {
         // console.log("all doubts arr", response.populatedQuery);
@@ -161,7 +161,7 @@ const Doubt = () => {
   // fetching my doubts
 
   const fetchMyDoubts = () => {
-    fetch("http://localhost:5000/api/doubts/view/my", {
+    fetch("https://gbtc-hd4r.onrender.com/api/doubts/view/my", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -256,7 +256,7 @@ const Doubt = () => {
       }
     }
 
-    fetch("http://localhost:5000/api/doubts/add", {
+    fetch("https://gbtc-hd4r.onrender.com/api/doubts/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

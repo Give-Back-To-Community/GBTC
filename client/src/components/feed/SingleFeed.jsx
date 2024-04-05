@@ -27,7 +27,7 @@ const SingleFeed = () => {
     // console.log("Calling single feed");
     // console.log(localStorage.getItem("token"));
     setIsLoading(true);
-    fetch("http://localhost:5000/api/extra/singleBlog", {
+    fetch("https://gbtc-hd4r.onrender.com/api/extra/singleBlog", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -99,7 +99,7 @@ const SingleFeed = () => {
       likeButton.current.onclick = () => {
         console.log(isUpvoted);
 
-        fetch("http://localhost:5000/api/blog/like/addLike", {
+        fetch("https://gbtc-hd4r.onrender.com/api/blog/like/addLike", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -143,14 +143,14 @@ const SingleFeed = () => {
       };
     }
 
-    fetch("http://localhost:5000/api/extra/curAuthorBlogs", {
+    fetch("https://gbtc-hd4r.onrender.com/api/extra/curAuthorBlogs", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ url }),
     })
-      .then((res) => {
+      .then(async (res) => {
         if (!res.ok) {
           return res.json().then((data) => {
             throw new Error(
@@ -175,7 +175,7 @@ const SingleFeed = () => {
     e.preventDefault();
     const content = e.target.commentInput.value;
     // console.log("target", content);
-    fetch("http://localhost:5000/api/comment/addComment", {
+    fetch("https://gbtc-hd4r.onrender.com/api/comment/addComment", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

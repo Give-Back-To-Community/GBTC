@@ -14,7 +14,7 @@ const SingleDoubt = () => {
     if (!localStorage.getItem("token")) {
       return;
     }
-    fetch(`http://localhost:5000/api/doubts/singleDoubt/${url}`, {
+    fetch(`https://gbtc-hd4r.onrender.com/api/doubts/singleDoubt/${url}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,7 @@ const SingleDoubt = () => {
       });
 
     console.log("m" + doubtDetails + "doubtDetails");
-    fetch("http://localhost:5000/api/doubts/canDelete", {
+    fetch("https://gbtc-hd4r.onrender.com/api/doubts/canDelete", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -64,7 +64,7 @@ const SingleDoubt = () => {
   }, []);
 
   const deleteDoubt = () => {
-    fetch(`http://localhost:5000/api/doubts/${doubtDetails._id}`, {
+    fetch(`https://gbtc-hd4r.onrender.com/api/doubts/${doubtDetails._id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -91,7 +91,7 @@ const SingleDoubt = () => {
       return;
     }
 
-    fetch(`http://localhost:5000/api/doubts/${url}/answer`, {
+    fetch(`https://gbtc-hd4r.onrender.com/api/doubts/${url}/answer`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
