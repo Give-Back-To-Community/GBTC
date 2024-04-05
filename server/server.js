@@ -11,7 +11,12 @@ const axios = require("axios");
 connectDB();
 // Middleware
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+app.use(
+  cors({
+    origin: ["https://gbtc-hazel.vercel.app/"],
+  })
+);
 
 //Socket
 const io = new Server(server, {
