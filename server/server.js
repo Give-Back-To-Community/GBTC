@@ -7,26 +7,28 @@ require("dotenv").config();
 const connectDB = require("./config/db");
 const app = express();
 const server = http.createServer(app);
-const axios = require("axios");
+
 connectDB();
-// Middleware
+
+// CORS Middleware Configuration
+const corsOptions = {
+  origin: "*",
+  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+};
+app.use(cors(corsOptions));
+
+// JSON Middleware for parsing request bodies
 app.use(express.json());
-// app.use(cors());
-app.use(
-  cors({
-    origin: ["https://gbtc-hazel.vercel.app/"],
-  })
-);
 
-//Socket
-
+// Socket.IO Configuration with CORS
 const io = new Server(server, {
   cors: {
-    origin: "https://gbtc-hazel.vercel.app/",
+    origin: "*", // Match the origins allowed by Express CORS configuration
     methods: ["GET", "POST", "PUT", "DELETE"],
   },
 });
 
+// Socket.IO Events
 io.on("connection", (socket) => {
   socket.on("joinRoom", (room) => {
     socket.join(room);
@@ -47,45 +49,33 @@ io.on("connection", (socket) => {
   });
 });
 
-const corsOptions = {
-  origin: "*",
-  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-};
-app.use(cors(corsOptions));
-
-// Routes
+// Import routes
 const authRoutes = require("./routes/authRoutes");
-app.use("/api/auth", authRoutes);
-
 const blogRoutes = require("./routes/blogRoutes");
-app.use("/api/blog", blogRoutes);
-
 const commentRoutes = require("./routes/commentRoutes");
-app.use("/api/comment", commentRoutes);
-
 const likeRoutes = require("./routes/likeRoutes");
-app.use("/api/blog/like", likeRoutes);
-
 const jobRoutes = require("./routes/jobRoutes");
-app.use("/api/job", jobRoutes);
-
 const followRoutes = require("./routes/followRoutes");
-app.use("/api/follow", followRoutes);
-
 const showFollowRoutes = require("./routes/showFollowRoutes");
-app.use("/api/showFollow", showFollowRoutes);
-
 const extraRoutes = require("./routes/extraRoutes");
+const doubtRouter = require("./routes/doubtRoutes");
+const { compileCode } = require("./controllers/compileController");
+
+// Route middlewares
+app.use("/api/auth", authRoutes);
+app.use("/api/blog", blogRoutes);
+app.use("/api/comment", commentRoutes);
+app.use("/api/blog/like", likeRoutes);
+app.use("/api/job", jobRoutes);
+app.use("/api/follow", followRoutes);
+app.use("/api/showFollow", showFollowRoutes);
 app.use("/api/extra", extraRoutes);
+app.use("/api/doubts", doubtRouter);
+app.use("/api/compile", compileCode);
+
 // Error handling middleware
 app.use(errorHandler);
 
-const doubtRouter = require("./routes/doubtRoutes");
-app.use("/api/doubts", doubtRouter);
-
-const { compileCode } = require("./controllers/compileController");
-app.use("/api/compile", compileCode);
-
-// Server
+// Server Listening
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
