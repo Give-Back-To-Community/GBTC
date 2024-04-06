@@ -35,10 +35,32 @@ const Register = () => {
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
   };
+  const isValidate = () => {
+    if (formData.age < 0) {
+      alert("Please enter valid age");
+      return false;
+    }
 
+    if (
+      formData.graduationYear >=
+      parseInt(new Date().toLocaleString("en-US", { year: "numeric" })) + 5
+    ) {
+      console.log(
+        formData.graduationYear,
+        parseInt(new Date().toLocaleString("en-US", { year: "numeric" })) + 5
+      );
+      alert("Please enter valid graduation year");
+      return false;
+    }
+    return true;
+  };
   const handleSubmit = async (e) => {
-    setLoading(true);
     e.preventDefault();
+
+    if (!isValidate()) {
+      return false;
+    }
+    setLoading(true);
 
     let profilePictureUrl = "";
     if (file) {
@@ -103,8 +125,10 @@ const Register = () => {
         // console.log("Registration failed", res);
         alert("Registration failed: " + res.errors[0].msg);
         console.error("Registration failed");
+        setLoading(false);
       }
     } catch (error) {
+      setLoading(false);
       console.error("Error submitting form: ", error);
     }
   };
@@ -178,16 +202,18 @@ const Register = () => {
               placeholder="College"
               value={formData.college}
               onChange={handleInputChange}
+              required
             />
           </div>
           <div className="form-group">
             <label htmlFor="graduationYear">Graduation Year</label>
             <input
-              type="text"
+              type="number"
               name="graduationYear"
               placeholder="Graduation Year"
               value={formData.graduationYear}
               onChange={handleInputChange}
+              required
             />
           </div>
           {!formData.isStudent && (
@@ -200,6 +226,7 @@ const Register = () => {
                   placeholder="Years of Experience"
                   value={formData.yearsOfExperience}
                   onChange={handleInputChange}
+                  required
                 />
               </div>
               <div className="form-group">
@@ -210,6 +237,7 @@ const Register = () => {
                   placeholder="Organization"
                   value={formData.organization}
                   onChange={handleInputChange}
+                  required
                 />
               </div>
               <div className="form-group">
@@ -220,6 +248,7 @@ const Register = () => {
                   placeholder="Role"
                   value={formData.role}
                   onChange={handleInputChange}
+                  required
                 />
               </div>
             </>
